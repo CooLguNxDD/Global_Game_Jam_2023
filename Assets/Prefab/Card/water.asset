@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f9a28cdd6b00b47aed53db9ab06cd8, type: 3}
+  m_Name: water
+  m_EditorClassIdentifier: 
+  CardID: 0
+  type: water
+  nutrition: 5
+  waterCost: 0
+  description: this is a water card :)
+  image: {fileID: 0}
+  card: {fileID: 0}
