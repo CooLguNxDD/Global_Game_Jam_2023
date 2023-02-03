@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour
@@ -15,6 +17,16 @@ public class CardManager : MonoBehaviour
 
     public void Shuffle()
     {
+        List<Card> tmp = currentCards.ToList<Card>();
+        Queue<Card> tmpCurrentCards = new Queue<Card>();
+        System.Random r = new System.Random();
+        while(tmp.Count > 0)
+        {
+            int index = r.Next(0, tmp.Count);
+            tmpCurrentCards.Enqueue(tmp[index]);
+            tmp.RemoveAt(index);
+        }
+        this.currentCards = tmpCurrentCards;
     }
 
     public Card DrawCard()
