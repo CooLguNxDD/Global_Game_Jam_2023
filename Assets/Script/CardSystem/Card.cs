@@ -5,17 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "card", menuName = "Cards")]
 public class Card : ScriptableObject
 {
-
+    // Card idenitifier
     public int CardID;
+    public string Type;
 
-    public string type;
-    public int nutrition;
-    public int waterCost;
 
+    // Card Status
+    public int NutritionCost;
+    public int WaterCost;
+    public string Name;
     [TextArea]
-    public string description;
+    public string Description;
 
-    public Sprite image;
-    public Sprite card;
+    public Sprite CardImage;
+
+
 
 }

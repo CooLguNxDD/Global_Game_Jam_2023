@@ -17,7 +17,7 @@ public class CardManager : MonoBehaviour
 
     public void Shuffle()
     {
-        List<Card> tmp = currentCards.ToList<Card>();
+        List<Card> tmp = fullDeck.ToList<Card>();
         Queue<Card> tmpCurrentCards = new Queue<Card>();
         System.Random r = new System.Random();
         while(tmp.Count > 0)
@@ -27,12 +27,31 @@ public class CardManager : MonoBehaviour
             tmp.RemoveAt(index);
         }
         this.currentCards = tmpCurrentCards;
+
+        Debug.Log(currentCards.Count);
     }
 
-    public Card DrawCard()
+    public void DrawCard()
     {
 
-        return currentCards.Dequeue();
+        Card drawCard = currentCards.Dequeue();
+        Debug.Log(drawCard.Name);
+        DisplayCardOnHand(drawCard);
+    }
+
+    public void DisplayCardOnHand(Card drawCard)
+    {
+        for (int i = 0; i < avaiableCardSlot.Length; i++)
+        {
+            if (!avaiableCardSlot[i]) 
+            {
+                avaiableCardSlot[i] = true;
+                cardPostion[i].gameObject.SetActive(true);
+                GameObject child = cardPostion[i].gameObject.transform.GetChild(0).gameObject;
+                child.GetComponent<CardDisplaySetting>().card = drawCard;
+                return;
+            }
+        }
     }
 
     public void PlayCard(int index) {
@@ -43,7 +62,7 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Shuffle();
     }
 
     // Update is called once per frame
