@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: water
   m_EditorClassIdentifier: 
   CardID: 0
-  type: water
-  nutrition: 5
-  waterCost: 0
-  description: this is a water card :)
-  image: {fileID: 0}
-  card: {fileID: 0}
+  Type: OMG
+  NutritionCost: 5
+  WaterCost: 5
+  Name: THIS IS SO GOOD
+  Description: LOL
+  CardImage: {fileID: 21300000, guid: 03f8138df07408f42ba048efdb182b6e, type: 3}
