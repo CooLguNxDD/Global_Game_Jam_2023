@@ -39,10 +39,4 @@ public class CardDisplaySetting : MonoBehaviour
 
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

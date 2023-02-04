@@ -6,9 +6,13 @@ public class CardPlayController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private void OnMouseDown()
+    public void MouseDown()
     {
         Debug.Log("down");
-        transform.position += Vector3.up * 5;
+    }
+
+    public void MouseUp()
+    {
+        Debug.Log("up");
     }
 }

@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.h8man.2d.navmeshplus": {
-      "version": "https://github.com/h8man/NavMeshPlus.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "f3c9c6d467115109044b3a508204649da5177b17"
-    },
     "com.unity.2d.animation": {
       "version": "7.0.9",
       "depth": 1,
@@ -138,16 +131,6 @@
         "com.unity.2d.spriteshape": "7.0.6",
         "com.unity.2d.tilemap": "1.0.0",
         "com.unity.2d.tilemap.extras": "2.2.3"
-      }
-    },
-    "com.unity.feature.gameplay-storytelling": {
-      "version": "1.0.0",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {
-        "com.unity.cinemachine": "2.8.9",
-        "com.unity.timeline": "1.6.4",
-        "com.unity.visualscripting": "1.7.8"
       }
     },
     "com.unity.ide.rider": {
