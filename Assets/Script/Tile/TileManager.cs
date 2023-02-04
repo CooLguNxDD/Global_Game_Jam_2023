@@ -5,7 +5,7 @@ using System;
 
 public class TileManager : MonoBehaviour
 {
-    enum TileType
+    public enum TileType
     {
         EMPTY,
         ROOT,
