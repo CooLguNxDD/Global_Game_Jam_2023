@@ -29,7 +29,7 @@ public class CardDisplaySetting : MonoBehaviour
     {
         if (card)
         {
-            Debug.Log(card.Name);
+            //Debug.Log(card.Name);
             Flag_Text.text = card.Name;
             NutritionCost.text = card.NutritionCost.ToString();
             WaterCost.text = card.NutritionCost.ToString();
@@ -38,11 +38,5 @@ public class CardDisplaySetting : MonoBehaviour
             CardImage.sprite = card.CardImage;
 
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
