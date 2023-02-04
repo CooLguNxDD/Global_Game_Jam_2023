@@ -29,6 +29,7 @@ public class TileManager : MonoBehaviour
     public float offsetGrid = 0.1f;
 
     public int[,] board = new int[row, column];
+    public Transform[,] board_pieces = new Transform[row, column];
 
     // for generating terrain
     float offsetX;
@@ -36,6 +37,19 @@ public class TileManager : MonoBehaviour
 
     public void changeGrid(int x, int y, int tile, ref int[,] board) {
         board[x,y] = tile;
+    }
+
+    bool checkIfBuildableAt(int x, int y)
+    {
+        if (y+1 < column)
+            if (board[x,y+1] == (int)TileType.ROOT) return true;
+        if (y-1 >= 0)
+            if (board[x,y-1] == (int)TileType.ROOT) return true;
+        if (x+1 < row)
+            if (board[x+1,y] == (int)TileType.ROOT) return true;
+        if (x-1 >= 0)
+            if (board[x-1,y] == (int)TileType.ROOT) return true;
+        return false;
     }
 
     public Vector3 initialPosition = new Vector3(0f,0f,0f);

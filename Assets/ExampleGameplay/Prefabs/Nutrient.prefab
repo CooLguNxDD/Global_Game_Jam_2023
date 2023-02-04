@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1564737976049896453}
   - component: {fileID: 2218716952298498603}
   - component: {fileID: 4524425560406837669}
+  - component: {fileID: 7680442827737503739}
   - component: {fileID: 2053184295730073267}
   m_Layer: 0
   m_Name: Square
@@ -160,6 +161,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultColor: {r: 0.79215693, g: 0.3921569, b: 0.7568628, a: 1}
   selectedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &7680442827737503739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621407217729953899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd76efd1b17c834eb98043b79f4cffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  x: 0
+  y: 0
+  isBuildAble: 1
 --- !u!114 &2053184295730073267
 MonoBehaviour:
   m_ObjectHideFlags: 0

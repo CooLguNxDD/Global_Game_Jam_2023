@@ -15,7 +15,7 @@ public class hoverable : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (Global.draggingCard)
+        if (Global.draggingCard && transform.GetComponent<Tile>().isBuildAble)
         {
             // Debug.Log("enter");
             Global.isValidLocation = true;

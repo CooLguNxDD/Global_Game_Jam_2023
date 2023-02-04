@@ -25,6 +25,8 @@ public class TileGameplaySimulation : MonoBehaviour
             {5, 0, 0, 0},
     };
 
+    public Transform[,] board_pieces;
+
     public static int column        = 4;
     public static int row           = 6;
     public float cellSize           = 1;
@@ -38,9 +40,23 @@ public class TileGameplaySimulation : MonoBehaviour
     public GameObject nutrientPrefab;
     public GameObject rockPrefab;
 
+    bool checkIfBuildableAt(int x, int y)
+    {
+        if (y+1 < column)
+            if (board[x,y+1] == (int)TileType.ROOT) return true;
+        if (y-1 >= 0)
+            if (board[x,y-1] == (int)TileType.ROOT) return true;
+        if (x+1 < row)
+            if (board[x+1,y] == (int)TileType.ROOT) return true;
+        if (x-1 >= 0)
+            if (board[x-1,y] == (int)TileType.ROOT) return true;
+        return false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        board_pieces = new Transform[row,column];
         for (int x = 0; x < row; x++)
         {
             for (int y = 0; y < column; y++)
@@ -49,50 +65,55 @@ public class TileGameplaySimulation : MonoBehaviour
                 {
                     case (int)TileType.EMPTY:
                         
-                        Instantiate(groundPrefab, 
+                        board_pieces[x,y] = Instantiate(groundPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
                             parent.transform
                             
-                        );
+                        ).transform;
+                        board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = checkIfBuildableAt(x, y);
                         break;
                     case (int)TileType.ROOT:
-                        Instantiate(rootPrefab, 
+                        board_pieces[x,y] = Instantiate(rootPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
                             parent.transform
-                        );
+                        ).transform;
+                        board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         break;
                     case (int)TileType.WATER:
-                        Instantiate(waterPrefab, 
+                        board_pieces[x,y] = Instantiate(waterPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
                             parent.transform
-                        );
-                        
+                        ).transform;
+                        board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = checkIfBuildableAt(x, y);
                         break;
                     case (int)TileType.NUTRIENT:
-                        Instantiate(nutrientPrefab, 
+                        board_pieces[x,y] = Instantiate(nutrientPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
                             parent.transform
-                        );
-                        
+                        ).transform;
+                        board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = checkIfBuildableAt(x, y);
                         break;
                     case (int)TileType.ROCK:
-                        Instantiate(rockPrefab, 
+                        board_pieces[x,y] = Instantiate(rockPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
                             parent.transform
-                        );
-                        
+                        ).transform;
+                        board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         break;
                     case (int)TileType.ENEMY_NEST:
-                        Instantiate(enemyPrefab, 
+                        board_pieces[x,y] = Instantiate(enemyPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
                             parent.transform
-                        );
+                        ).transform;
                         break;
                 }
             }
