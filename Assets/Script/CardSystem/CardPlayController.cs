@@ -53,7 +53,7 @@ public class CardPlayController : MonoBehaviour
 
     public void CardBackToEnd()
     {
-        this.transform.GetComponent<RectTransform>().DOMove(previousPosition, 0.5f);
+        this.transform.GetComponent<RectTransform>().DOMove(previousPosition, 1f);
     }
 
 
