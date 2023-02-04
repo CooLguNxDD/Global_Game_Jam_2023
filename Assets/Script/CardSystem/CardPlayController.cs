@@ -6,82 +6,77 @@ using DG.Tweening;
 public class CardPlayController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public CardManager CardSystem;
-    public CardPosClass cardPosClass;
+    public CardManager cardSystem;
+    public CardPosClass CardPosClass;
 
-    private Global global;
-    private Vector3 previousPosition;
-
-
-
-    //should be false
-    // for game testing
-    private bool isValidArea = true;
+    public Global global;
+    private Vector3 _previousPosition;
 
     public void Start()
     {
-        CardSystem = this.transform.GetComponentInParent<CardManager>();
-        global = CardSystem.global;
+        cardSystem = this.transform.GetComponentInParent<CardManager>();
+        global = cardSystem.global;
 
     }
     public void MouseDown() {
         //start dragging
-        global.isDragging = true;
+        
+        global.draggingCard = CardPosClass.card;
 
-        if (previousPosition == Vector3.zero)
+        if (_previousPosition == Vector3.zero)
         {
-            previousPosition = this.transform.GetComponent<RectTransform>().position;
+            _previousPosition = this.transform.GetComponent<RectTransform>().position;
         }
 
-        cardPosClass.CardPos.GetComponent<CardDisplaySetting>().SetAlpha(0.75f);
+        CardPosClass.CardPos.GetComponent<CardDisplaySetting>().SetAlpha(0.75f);
         this.transform.GetComponent<RectTransform>().localScale = Vector3.one * 0.5f;
 
-        Debug.Log(previousPosition);
+        Debug.Log(_previousPosition);
         //Debug.Log(cardPos.CardIndexOnHand);
     }
 
     public bool ValidCost()
     {
-        if (global.Nutrition > cardPosClass.card.NutritionCost &&
-            global.Water > cardPosClass.card.WaterCost)
+        if (global.Nutrition > CardPosClass.card.NutritionCost &&
+            global.Water > CardPosClass.card.WaterCost)
         {
-            global.Nutrition -= cardPosClass.card.NutritionCost; 
-            global.Water -= cardPosClass.card.WaterCost;
+            global.Nutrition -= CardPosClass.card.NutritionCost; 
+            global.Water -= CardPosClass.card.WaterCost;
             Debug.Log(global.Nutrition);
             Debug.Log(global.Water);
             return true;
         }
-        else
-        {
-            CardBackToEnd();
-        }
+        
         return false;
     }
 
     public void CardBackToEnd()
     {
         
-        this.transform.GetComponent<RectTransform>().DOMove(previousPosition, 0.25f);
+        this.transform.GetComponent<RectTransform>().DOMove(_previousPosition, 0.25f);
     }
-
-
-    public void setValidArea() { isValidArea = true; }
-
 
     public void MouseUp()
     {
         //start dragging
-        global.isDragging = false;
-        if (isValidArea)
+        
+        if (global.isValidLocation && global.draggingCard)
         {
             if (ValidCost())
             {
                 Debug.Log("played a card");
-                CardSystem.PlayCard(cardPosClass.CardIndexOnHand);
+                cardSystem.PlayCard(CardPosClass.CardIndexOnHand);
+                return;
             }
+            Debug.Log("not enough cost");
         }
-        this.transform.GetComponent<RectTransform>().localScale = Vector3.one;
-        cardPosClass.CardPos.GetComponent<CardDisplaySetting>().SetAlpha(1f);
+        Debug.Log("invalid area");
+        transform.GetComponent<RectTransform>().localScale = Vector3.one;
+        CardPosClass.CardPos.GetComponent<CardDisplaySetting>().SetAlpha(1f);
+        
+        CardBackToEnd();
+        //set dragging to false
+        global.draggingCard = null;
         //Debug.Log("up");
     }
 }

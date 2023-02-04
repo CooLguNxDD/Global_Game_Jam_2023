@@ -2,7 +2,9 @@
     "name": "LeanTouch",
     "references": [
         "LeanCommon",
-        "CW.Common"
+        "CW.Common",
+        "UnityEditor.UI",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

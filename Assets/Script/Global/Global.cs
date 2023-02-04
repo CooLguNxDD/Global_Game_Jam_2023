@@ -11,5 +11,6 @@ public class Global : MonoBehaviour
 
 
     // game controller elements
-    public bool isDragging;
+    public bool isValidLocation;
+    public Card draggingCard;
 }

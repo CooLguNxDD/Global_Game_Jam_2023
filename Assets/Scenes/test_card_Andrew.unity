@@ -650,8 +650,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3d079179d9a6e843a668854a160967b, type: 2}
   - {fileID: 11400000, guid: 8ba4295a998118c4a82e443cee977c07, type: 2}
   - {fileID: 11400000, guid: c3d079179d9a6e843a668854a160967b, type: 2}
-  MaxCardOnHand: 5
-  CardDisplayPrefab: {fileID: 7217282346531904259, guid: e0bd9333f847d39429b40e19a4a7d58e, type: 3}
+  maxCardOnHand: 5
+  cardDisplayPrefab: {fileID: 7217282346531904259, guid: e0bd9333f847d39429b40e19a4a7d58e, type: 3}
 --- !u!114 &640019417
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,17 +12,19 @@ public class hoverable : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        if (global.isDragging)
+        if (global.draggingCard)
         {
-            Debug.Log("enter");
+            // Debug.Log("enter");
+            global.isValidLocation = true;
             transform.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
     private void OnMouseExit()
     {
-        if (global.isDragging)
+        if (global.draggingCard)
         {
-            Debug.Log("exit");
+            // Debug.Log("exit");
+            global.isValidLocation = false;
             transform.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }

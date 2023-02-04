@@ -1,7 +1,9 @@
 {
     "name": "LeanCommon",
     "references": [
-        "CW.Common"
+        "CW.Common",
+        "UnityEditor.UI",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

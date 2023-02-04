@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea883fa4-39ca-4c02-a00f-4738ed644718" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/PluginMaster/DesignTools/Editor/PrefabWorldBuilder/Resources/Data/PWBData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PluginMaster/DesignTools/Editor/PrefabWorldBuilder/Resources/Data/PWBData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Global_Game_Jam_2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Global_Game_Jam_2023/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/CW/LeanCommon/LeanCommon.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/CW/LeanCommon/LeanCommon.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/CW/LeanTouch/LeanTouch.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/CW/LeanTouch/LeanTouch.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/CW/Shared/Common/CW.Common.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/CW/Shared/Common/CW.Common.asmdef" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/test_card_Andrew.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/test_card_Andrew.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CardSystem/CardManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CardSystem/CardManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CardSystem/CardPlayController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CardSystem/CardPlayController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Global/Global.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Global/Global.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Tile/hoverable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Tile/hoverable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,20 +30,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "rider.run.widget.enabled.cache": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.16f1\Editor\Unity.exe" />
@@ -75,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1675459195073</updated>
       <workItem from="1675459199075" duration="163000" />
-      <workItem from="1675459560134" duration="2404000" />
+      <workItem from="1675459560134" duration="3517000" />
     </task>
     <servers />
   </component>
