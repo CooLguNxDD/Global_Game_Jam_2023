@@ -12,6 +12,8 @@ public class CameraController : MonoBehaviour
     private float CAMERA_MAX_X = 5f;
     private float CAMERA_MAX_Y = 5f;
 
+    private float CAMERA_MIN_ZOOM = 5f;
+    private float CAMERA_MAX_ZOOM = 20f;
     private Vector3 cameraFollowPosition;
 
     private bool isRightClickDragging = false;
@@ -34,6 +36,21 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.mouseScrollDelta.y == -1)
+        {
+            if (Camera.main.orthographicSize < CAMERA_MAX_ZOOM)
+            {
+                Camera.main.orthographicSize += 1.0f;
+            }
+        }
+
+        if (Input.mouseScrollDelta.y == 1)
+        {
+            if (Camera.main.orthographicSize > CAMERA_MIN_ZOOM)
+            {
+                Camera.main.orthographicSize -= 1.0f;
+            }
+        }
         if (Input.GetMouseButtonDown(1) && !isRightClickDragging) {
             isRightClickDragging = true;
             initialMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -47,7 +64,7 @@ public class CameraController : MonoBehaviour
         if (isRightClickDragging) {
             cameraFollowPosition = initialCameraPosition + (transform.InverseTransformPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)) - transform.InverseTransformPoint(initialMousePosition)) * rightClickDragSensitivityMultiplier;
         } else {
-            float moveAmount = 5f;
+            float moveAmount = 50f;
             if (Input.GetKey(KeyCode.W)) {
                 cameraFollowPosition.y += moveAmount * Time.deltaTime;
             }

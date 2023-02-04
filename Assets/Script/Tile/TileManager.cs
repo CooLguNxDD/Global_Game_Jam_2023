@@ -19,4 +19,5 @@ public class TileManager : MonoBehaviour
     public void changeGrid(int x, int y, TileType tile) {
         board[x,y] = tile;
     }
+
 }
