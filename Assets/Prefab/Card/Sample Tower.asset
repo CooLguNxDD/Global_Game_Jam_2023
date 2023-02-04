@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f9a28cdd6b00b47aed53db9ab06cd8, type: 3}
+  m_Name: Sample Tower
+  m_EditorClassIdentifier: 
+  CardID: 2
+  Type: tower
+  spawnableobject: {fileID: 5324429474933659321, guid: 0c66d7d547b2e8d4da32f32a1f4358e4, type: 3}
+  NutritionCost: 10
+  WaterCost: 10
+  Name: test tower
+  Description: this is a test!!!!!
+  CardImage: {fileID: 67495639, guid: 04a7c9ebdd3607246b98a36a99ad9e3e, type: 3}

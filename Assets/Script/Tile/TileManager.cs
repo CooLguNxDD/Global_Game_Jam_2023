@@ -5,16 +5,6 @@ using System;
 
 public class TileManager : MonoBehaviour
 {
-    public enum TileType
-    {
-        EMPTY,
-        ROOT,
-        WATER,
-        NUTRIENT,
-        ROCK,
-        ENEMY_NEST
-    }
-    
 
     public static int row = 50;
     public static int column = 50;
@@ -50,13 +40,13 @@ public class TileManager : MonoBehaviour
     bool checkIfBuildableAt(int x, int y)
     {
         if (y+1 < column)
-            if (board[x,y+1] == (int)TileType.ROOT) return true;
+            if (board[x,y+1] == (int)Global.TileType.ROOT) return true;
         if (y-1 >= 0)
-            if (board[x,y-1] == (int)TileType.ROOT) return true;
+            if (board[x,y-1] == (int)Global.TileType.ROOT) return true;
         if (x+1 < row)
-            if (board[x+1,y] == (int)TileType.ROOT) return true;
+            if (board[x+1,y] == (int)Global.TileType.ROOT) return true;
         if (x-1 >= 0)
-            if (board[x-1,y] == (int)TileType.ROOT) return true;
+            if (board[x-1,y] == (int)Global.TileType.ROOT) return true;
         return false;
     }
 
@@ -74,26 +64,26 @@ public class TileManager : MonoBehaviour
             {
                 if (x == Math.Floor((column+1)/2f) && y == row-1)
                 {
-                    changeGrid(x,y, (int)TileType.ROOT, ref board);
+                    changeGrid(x,y, (int)Global.TileType.ROOT, ref board);
                     continue;
                 }
 
                 float height_value = getHeightByXY(x,y);
                 if (height_value < emptyRatio)
                 {
-                    changeGrid(x,y, (int)TileType.EMPTY, ref board);
+                    changeGrid(x,y, (int)Global.TileType.EMPTY, ref board);
                 }
                 else if (height_value < emptyRatio + waterRatio)
                 {
-                    changeGrid(x,y, (int)TileType.WATER, ref board);
+                    changeGrid(x,y, (int)Global.TileType.WATER, ref board);
                 }
                 else if (height_value < emptyRatio + waterRatio + nutrientRatio)
                 {
-                    changeGrid(x,y, (int)TileType.NUTRIENT, ref board);
+                    changeGrid(x,y, (int)Global.TileType.NUTRIENT, ref board);
                 }
                 else
                 {
-                    changeGrid(x,y, (int)TileType.ROCK, ref board);
+                    changeGrid(x,y, (int)Global.TileType.ROCK, ref board);
                 }
             }
         }
@@ -104,7 +94,7 @@ public class TileManager : MonoBehaviour
             {
                 switch(board[x,y])
                 {
-                    case (int)TileType.EMPTY:
+                    case (int)Global.TileType.EMPTY:
                         
                         board_pieces[x,y] = Instantiate(groundPrefab, 
                             new Vector3(x * cellSize+initialPosition.x+offsetGrid, y * cellSize+initialPosition.y+offsetGrid, 0.0f),
@@ -115,7 +105,7 @@ public class TileManager : MonoBehaviour
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = checkIfBuildableAt(x, y);
                         break;
-                    case (int)TileType.ROOT:
+                    case (int)Global.TileType.ROOT:
                         board_pieces[x,y] = Instantiate(rootPrefab, 
                             new Vector3(x * cellSize+initialPosition.x+offsetGrid, y * cellSize+initialPosition.y+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -123,7 +113,7 @@ public class TileManager : MonoBehaviour
                         ).transform;
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         break;
-                    case (int)TileType.WATER:
+                    case (int)Global.TileType.WATER:
                         board_pieces[x,y] = Instantiate(waterPrefab, 
                             new Vector3(x * cellSize+initialPosition.x+offsetGrid, y * cellSize+initialPosition.y+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -132,7 +122,7 @@ public class TileManager : MonoBehaviour
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = checkIfBuildableAt(x, y);
                         break;
-                    case (int)TileType.NUTRIENT:
+                    case (int)Global.TileType.NUTRIENT:
                         board_pieces[x,y] = Instantiate(nutrientPrefab, 
                             new Vector3(x * cellSize+initialPosition.x+offsetGrid, y * cellSize+initialPosition.y+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -141,7 +131,7 @@ public class TileManager : MonoBehaviour
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = checkIfBuildableAt(x, y);
                         break;
-                    case (int)TileType.ROCK:
+                    case (int)Global.TileType.ROCK:
                         board_pieces[x,y] = Instantiate(rockPrefab, 
                             new Vector3(x * cellSize+initialPosition.x+offsetGrid, y * cellSize+initialPosition.y+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -149,7 +139,7 @@ public class TileManager : MonoBehaviour
                         ).transform;
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         break;
-                    case (int)TileType.ENEMY_NEST:
+                    case (int)Global.TileType.ENEMY_NEST:
                         board_pieces[x,y] = Instantiate(enemyPrefab, 
                             new Vector3(x * cellSize+initialPosition.x+offsetGrid, y * cellSize+initialPosition.y+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -180,20 +170,20 @@ public class TileManager : MonoBehaviour
                 } else
                 {
                     // Debug.Log(board[x,y]);
-                    // Debug.Log("Color"+(int)TileType.EMPTY);
+                    // Debug.Log("Color"+(int)Global.TileType.EMPTY);
                     
                     switch(board[x,y])
                     {
-                        case (int)TileType.EMPTY:
+                        case (int)Global.TileType.EMPTY:
                             Gizmos.color = Color.yellow;
                             break;
-                        case (int)TileType.WATER:
+                        case (int)Global.TileType.WATER:
                             Gizmos.color = Color.blue;
                             break;
-                        case (int)TileType.NUTRIENT:
+                        case (int)Global.TileType.NUTRIENT:
                             Gizmos.color = Color.magenta;
                             break;
-                        case (int)TileType.ROCK:
+                        case (int)Global.TileType.ROCK:
                             Gizmos.color = Color.grey;
                             break;
                     }

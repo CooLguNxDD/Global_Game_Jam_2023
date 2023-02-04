@@ -78,7 +78,6 @@ public class TowerSampleScript : MonoBehaviour
     IEnumerator Shoot()
     {
         _isShooting = true;
-        
         yield return new WaitForSeconds(reloadTime);
         GameObject bullet = Instantiate(projectile, BulletSpawnPoint.transform.position, Quaternion.identity);
         bullet.GetComponent<projectileController>().target = enemyList[0];
@@ -88,7 +87,7 @@ public class TowerSampleScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemyExist)
+        if (enemyExist && enemyList[0])
         {
             LookAt2D(transform, enemyList[0].transform ,rotationOffset, rotationSpeed);
         }

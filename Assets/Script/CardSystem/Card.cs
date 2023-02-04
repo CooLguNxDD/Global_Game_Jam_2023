@@ -7,8 +7,7 @@ public class Card : ScriptableObject
 {
     // Card idenitifier
     public int CardID;
-    public string Type;
-
+    public Global.TileType type;
 
     // Card Status
     public int NutritionCost;

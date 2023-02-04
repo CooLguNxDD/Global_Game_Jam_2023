@@ -8,6 +8,8 @@ public class CardPlayController : MonoBehaviour
     // Start is called before the first frame update
     public CardManager cardSystem;
     public CardPosClass CardPosClass;
+
+    public Tile tile;
     
     private Vector3 _previousPosition;
     
@@ -70,6 +72,8 @@ public class CardPlayController : MonoBehaviour
             {
                 Debug.Log("played a card");
                 cardSystem.PlayCard(CardPosClass.CardIndexOnHand);
+                Global.buildOn.GetComponent<SpriteRenderer>().sprite = CardPosClass.card.CardImage;
+                Global.buildOn.GetComponent<Tile>().type = CardPosClass.card.type;
                 return;
             }
             Debug.Log("not enough cost");

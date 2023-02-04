@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f9a28cdd6b00b47aed53db9ab06cd8, type: 3}
+  m_Name: Root
+  m_EditorClassIdentifier: 
+  CardID: 3
+  type: 1
+  NutritionCost: 1
+  WaterCost: 1
+  Name: root
+  Description: this is a root
+  CardImage: {fileID: 21300000, guid: cb2253e151376ce48a7cb2ab482adba0, type: 3}
