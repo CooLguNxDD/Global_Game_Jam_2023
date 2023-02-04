@@ -81,7 +81,7 @@ public class CardManager : MonoBehaviour
         cardPosClass.card = drawCard;
         cardPosClass.CardIndexOnHand = CardIndexOnHand;
 
-        newCardPos.GetComponent<CardPlayController>().cardPos = cardPosClass;
+        newCardPos.GetComponent<CardPlayController>().cardPosClass = cardPosClass;
         //set  start animation
         //newCardPos.SetActive(false);
         CardIndexOnHand += 1;
