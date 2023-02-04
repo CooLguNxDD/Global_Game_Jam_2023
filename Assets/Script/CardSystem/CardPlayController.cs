@@ -7,7 +7,7 @@ public class CardPlayController : MonoBehaviour
 {
     // Start is called before the first frame update
     public CardManager CardSystem;
-    public CardPosClass cardPos;
+    public CardPosClass cardPosClass;
 
     private Global global;
     private Vector3 previousPosition;
@@ -29,17 +29,21 @@ public class CardPlayController : MonoBehaviour
         {
             previousPosition = this.transform.GetComponent<RectTransform>().position;
         }
+
+        cardPosClass.CardPos.GetComponent<CardDisplaySetting>().SetAlpha(0.75f);
+        this.transform.GetComponent<RectTransform>().localScale = Vector3.one * 0.5f;
+
         Debug.Log(previousPosition);
         //Debug.Log(cardPos.CardIndexOnHand);
     }
 
     public bool ValidCost()
     {
-        if (global.Nutrition > cardPos.card.NutritionCost &&
-            global.Water > cardPos.card.WaterCost)
+        if (global.Nutrition > cardPosClass.card.NutritionCost &&
+            global.Water > cardPosClass.card.WaterCost)
         {
-            global.Nutrition -= cardPos.card.NutritionCost; 
-            global.Water -= cardPos.card.WaterCost;
+            global.Nutrition -= cardPosClass.card.NutritionCost; 
+            global.Water -= cardPosClass.card.WaterCost;
             Debug.Log(global.Nutrition);
             Debug.Log(global.Water);
             return true;
@@ -53,7 +57,8 @@ public class CardPlayController : MonoBehaviour
 
     public void CardBackToEnd()
     {
-        this.transform.GetComponent<RectTransform>().DOMove(previousPosition, 1f);
+        
+        this.transform.GetComponent<RectTransform>().DOMove(previousPosition, 0.25f);
     }
 
 
@@ -67,9 +72,11 @@ public class CardPlayController : MonoBehaviour
             if (ValidCost())
             {
                 Debug.Log("played a card");
-                CardSystem.PlayCard(cardPos.CardIndexOnHand);
+                CardSystem.PlayCard(cardPosClass.CardIndexOnHand);
             }
         }
+        this.transform.GetComponent<RectTransform>().localScale = Vector3.one;
+        cardPosClass.CardPos.GetComponent<CardDisplaySetting>().SetAlpha(1f);
         //Debug.Log("up");
     }
 }

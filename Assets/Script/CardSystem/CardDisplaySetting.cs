@@ -8,6 +8,7 @@ public class CardDisplaySetting : MonoBehaviour
 {
 
     public Card card;
+    public CanvasGroup group;
 
     //back image
     public Image Back;
@@ -25,6 +26,10 @@ public class CardDisplaySetting : MonoBehaviour
     public TMP_Text Description;
 
     // Start is called before the first frame update
+    public void SetAlpha(float alpha)
+    {
+        group.alpha = alpha;
+    }
     void Start()
     {
         if (card)
