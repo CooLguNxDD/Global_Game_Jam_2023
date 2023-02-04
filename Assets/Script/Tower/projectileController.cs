@@ -8,8 +8,8 @@ public class projectileController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public float speed = 10f;
-    public float stayTime = 5f;
+    public float speed = 20f;
+    public float stayTime = 2f;
 
     public GameObject target;
     

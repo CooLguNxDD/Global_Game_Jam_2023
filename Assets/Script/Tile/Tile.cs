@@ -5,7 +5,7 @@ using System;
 
 public class Tile : MonoBehaviour
 {
-    public TileManager.TileType type;
+    public Global.TileType type;
     
     public int x;
     public int y;

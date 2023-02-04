@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Root
   m_EditorClassIdentifier: 
   CardID: 3
-  Type: root
-  spawnableobject: {fileID: 2025737874636688588, guid: 93e056ac5356e8d4c8a124e6cd8ad750, type: 3}
+  type: 1
   NutritionCost: 1
   WaterCost: 1
   Name: root

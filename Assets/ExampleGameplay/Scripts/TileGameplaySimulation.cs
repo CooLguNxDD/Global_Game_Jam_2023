@@ -6,15 +6,7 @@ public class TileGameplaySimulation : MonoBehaviour
 {
 
     public GameObject parent;
-    public enum TileType
-    {
-        EMPTY,
-        ROOT,
-        WATER,
-        NUTRIENT,
-        ROCK,
-        ENEMY_NEST
-    }
+
 
     public int[,] board = {
             {0, 1, 0, 0},
@@ -43,13 +35,13 @@ public class TileGameplaySimulation : MonoBehaviour
     bool checkIfBuildableAt(int x, int y)
     {
         if (y+1 < column)
-            if (board[x,y+1] == (int)TileType.ROOT) return true;
+            if (board[x,y+1] == (int)Global.TileType.ROOT) return true;
         if (y-1 >= 0)
-            if (board[x,y-1] == (int)TileType.ROOT) return true;
+            if (board[x,y-1] == (int)Global.TileType.ROOT) return true;
         if (x+1 < row)
-            if (board[x+1,y] == (int)TileType.ROOT) return true;
+            if (board[x+1,y] == (int)Global.TileType.ROOT) return true;
         if (x-1 >= 0)
-            if (board[x-1,y] == (int)TileType.ROOT) return true;
+            if (board[x-1,y] == (int)Global.TileType.ROOT) return true;
         return false;
     }
 
@@ -63,7 +55,7 @@ public class TileGameplaySimulation : MonoBehaviour
             {
                 switch(board[x,y])
                 {
-                    case (int)TileType.EMPTY:
+                    case (int)Global.TileType.EMPTY:
                         
                         board_pieces[x,y] = Instantiate(groundPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
@@ -74,7 +66,7 @@ public class TileGameplaySimulation : MonoBehaviour
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = checkIfBuildableAt(x, y);
                         break;
-                    case (int)TileType.ROOT:
+                    case (int)Global.TileType.ROOT:
                         board_pieces[x,y] = Instantiate(rootPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -82,7 +74,7 @@ public class TileGameplaySimulation : MonoBehaviour
                         ).transform;
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         break;
-                    case (int)TileType.WATER:
+                    case (int)Global.TileType.WATER:
                         board_pieces[x,y] = Instantiate(waterPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -91,7 +83,7 @@ public class TileGameplaySimulation : MonoBehaviour
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = checkIfBuildableAt(x, y);
                         break;
-                    case (int)TileType.NUTRIENT:
+                    case (int)Global.TileType.NUTRIENT:
                         board_pieces[x,y] = Instantiate(nutrientPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -100,7 +92,7 @@ public class TileGameplaySimulation : MonoBehaviour
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = checkIfBuildableAt(x, y);
                         break;
-                    case (int)TileType.ROCK:
+                    case (int)Global.TileType.ROCK:
                         board_pieces[x,y] = Instantiate(rockPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -108,7 +100,7 @@ public class TileGameplaySimulation : MonoBehaviour
                         ).transform;
                         board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
                         break;
-                    case (int)TileType.ENEMY_NEST:
+                    case (int)Global.TileType.ENEMY_NEST:
                         board_pieces[x,y] = Instantiate(enemyPrefab, 
                             new Vector3(y * cellSize+initialPosition.y+offsetGrid, -x * cellSize+initialPosition.x+offsetGrid, 0.0f),
                             new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
@@ -135,22 +127,22 @@ public class TileGameplaySimulation : MonoBehaviour
             {
                 switch(board[x,y])
                 {
-                    case (int)TileType.EMPTY:
+                    case (int)Global.TileType.EMPTY:
                         Gizmos.color = Color.yellow;
                         break;
-                    case (int)TileType.ROOT:
+                    case (int)Global.TileType.ROOT:
                         Gizmos.color = new Color(0.4f, 0.25f, 0.13f, 1f);
                         break;
-                    case (int)TileType.WATER:
+                    case (int)Global.TileType.WATER:
                         Gizmos.color = Color.blue;
                         break;
-                    case (int)TileType.NUTRIENT:
+                    case (int)Global.TileType.NUTRIENT:
                         Gizmos.color = Color.magenta;
                         break;
-                    case (int)TileType.ROCK:
+                    case (int)Global.TileType.ROCK:
                         Gizmos.color = Color.grey;
                         break;
-                    case (int)TileType.ENEMY_NEST:
+                    case (int)Global.TileType.ENEMY_NEST:
                         Gizmos.color = Color.red;
                         break;
                 }

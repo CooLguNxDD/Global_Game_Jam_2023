@@ -78,7 +78,6 @@ public class TowerSampleScript : MonoBehaviour
     IEnumerator Shoot()
     {
         _isShooting = true;
-        
         yield return new WaitForSeconds(reloadTime);
         GameObject bullet = Instantiate(projectile, BulletSpawnPoint.transform.position, Quaternion.identity);
         bullet.GetComponent<projectileController>().target = enemyList[0];

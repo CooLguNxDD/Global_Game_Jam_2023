@@ -19,7 +19,7 @@ public class hoverable : MonoBehaviour
         {
             // Debug.Log("enter");
             Global.isValidLocation = true;
-            Global.validLocationPoint = transform.position;
+            Global.buildOn = gameObject;
             transform.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }

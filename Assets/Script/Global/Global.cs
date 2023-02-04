@@ -11,6 +11,16 @@ public class Global
     
     // game controller elements
     public static bool isValidLocation;
-    public static Vector3 validLocationPoint;
+    public static GameObject buildOn;
     public static Card draggingCard;
+    
+    public enum TileType
+    {
+        EMPTY,
+        ROOT,
+        WATER,
+        NUTRIENT,
+        ROCK,
+        ENEMY_NEST
+    }
 }
