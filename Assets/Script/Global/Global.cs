@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Global : MonoBehaviour
 {
+    //global variable
     public int Nutrition = 100;
     public int Water = 100;
 
+
+
+    // game controller elements
+    public bool isDragging;
 }

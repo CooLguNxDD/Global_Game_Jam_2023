@@ -25,6 +25,9 @@ public class CardPlayController : MonoBehaviour
 
     }
     public void MouseDown() {
+        //start dragging
+        global.isDragging = true;
+
         if (previousPosition == Vector3.zero)
         {
             previousPosition = this.transform.GetComponent<RectTransform>().position;
@@ -67,6 +70,8 @@ public class CardPlayController : MonoBehaviour
 
     public void MouseUp()
     {
+        //start dragging
+        global.isDragging = false;
         if (isValidArea)
         {
             if (ValidCost())

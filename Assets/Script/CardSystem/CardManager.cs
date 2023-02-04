@@ -124,7 +124,6 @@ public class CardManager : MonoBehaviour
             }
             cardListIndex++;
         }
-        
     }
 
     // Start is called before the first frame update
