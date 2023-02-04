@@ -70,6 +70,7 @@ public class CardPlayController : MonoBehaviour
             {
                 Debug.Log("played a card");
                 cardSystem.PlayCard(CardPosClass.CardIndexOnHand);
+                Instantiate(CardPosClass.card.spawnableobject, Global.validLocationPoint, Quaternion.identity);
                 return;
             }
             Debug.Log("not enough cost");

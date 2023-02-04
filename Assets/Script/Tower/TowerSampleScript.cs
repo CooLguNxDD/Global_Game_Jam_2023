@@ -88,7 +88,7 @@ public class TowerSampleScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemyExist)
+        if (enemyExist && enemyList[0])
         {
             LookAt2D(transform, enemyList[0].transform ,rotationOffset, rotationSpeed);
         }

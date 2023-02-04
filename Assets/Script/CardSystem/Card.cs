@@ -9,6 +9,7 @@ public class Card : ScriptableObject
     public int CardID;
     public string Type;
 
+    public GameObject spawnableobject;
 
     // Card Status
     public int NutritionCost;
