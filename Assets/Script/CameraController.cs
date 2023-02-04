@@ -7,10 +7,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CameraFollow cameraFollow;
 
     public bool enableEdgeScrolling = false;
-    private float CAMERA_MIN_X = -5f;
-    private float CAMERA_MIN_Y = -5f;
-    private float CAMERA_MAX_X = 5f;
-    private float CAMERA_MAX_Y = 5f;
+    private float CAMERA_MIN_X = -50f;
+    private float CAMERA_MIN_Y = -50f;
+    private float CAMERA_MAX_X = 50f;
+    private float CAMERA_MAX_Y = 50f;
 
     private float CAMERA_MIN_ZOOM = 5f;
     private float CAMERA_MAX_ZOOM = 20f;
