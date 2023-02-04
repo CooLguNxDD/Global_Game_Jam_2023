@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,7 +13,9 @@ public class TowerSampleScript : MonoBehaviour
     
     //enemy checking
     private bool enemyExist;
-    private Transform enemy;
+    
+    //todo: convert to scriptable object 
+    private List<GameObject> enemyList;
 
     //shooting part
 
@@ -23,27 +26,38 @@ public class TowerSampleScript : MonoBehaviour
     public int reloadTime;
     
     private bool _isShooting;
+    
 
     private void Awake()
     {
         _isShooting = false;
+        enemyList = new List<GameObject>();
     }
 
-    private void LookAt2D(Transform current, Transform others)
+    private void LookAt2D(Transform current, Transform others ,float RotationOffset, float RotationSpeed)
     {
-        Vector3 vectorToTarget = others.transform.position - current.transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationOffset;
+        Vector3 vectorToTarget = others.position - current.position;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - RotationOffset;
         Quaternion quaternion = Quaternion.AngleAxis(angle, Vector3.forward);
-        current.rotation = Quaternion.Slerp(current.rotation, quaternion, Time.deltaTime * rotationSpeed);
+        current.rotation = Quaternion.Slerp(current.rotation, quaternion, Time.deltaTime * RotationSpeed);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Enemy") && !enemyExist)
+        if (other.transform.CompareTag("Enemy"))
         {
-            Debug.Log("entered");
-            enemy = other.transform;
+            GameObject newEnemy = other.gameObject;
+            enemyList.Add(newEnemy);
             enemyExist = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        GameObject thisEnemy = other.gameObject;
+        if (enemyList.Contains(thisEnemy))
+        {
+            enemyList.Remove(thisEnemy);
         }
     }
 
@@ -64,9 +78,10 @@ public class TowerSampleScript : MonoBehaviour
     IEnumerator Shoot()
     {
         _isShooting = true;
-        GameObject bullet = Instantiate(projectile, BulletSpawnPoint.transform, transform);
-        LookAt2D(bullet.transform, enemy);
+        
         yield return new WaitForSeconds(reloadTime);
+        GameObject bullet = Instantiate(projectile, BulletSpawnPoint.transform.position, Quaternion.identity);
+        bullet.GetComponent<projectileController>().target = enemyList[0];
         _isShooting = false;
         yield return null;
     }
@@ -75,9 +90,7 @@ public class TowerSampleScript : MonoBehaviour
     {
         if (enemyExist)
         {
-            LookAt2D(transform, enemy.transform);
+            LookAt2D(transform, enemyList[0].transform ,rotationOffset, rotationSpeed);
         }
     }
-
-
 }
