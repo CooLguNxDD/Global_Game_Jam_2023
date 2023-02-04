@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG;
+using DG.Tweening;
 public class CardPlayController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -9,6 +10,7 @@ public class CardPlayController : MonoBehaviour
     public CardPosClass cardPos;
 
     private Global global;
+    private Vector3 previousPosition;
 
 
 
@@ -20,8 +22,14 @@ public class CardPlayController : MonoBehaviour
     {
         CardSystem = this.transform.GetComponentInParent<CardManager>();
         global = CardSystem.global;
+
     }
     public void MouseDown() {
+        if (previousPosition == Vector3.zero)
+        {
+            previousPosition = this.transform.GetComponent<RectTransform>().position;
+        }
+        Debug.Log(previousPosition);
         //Debug.Log(cardPos.CardIndexOnHand);
     }
 
@@ -36,7 +44,16 @@ public class CardPlayController : MonoBehaviour
             Debug.Log(global.Water);
             return true;
         }
+        else
+        {
+            CardBackToEnd();
+        }
         return false;
+    }
+
+    public void CardBackToEnd()
+    {
+        this.transform.GetComponent<RectTransform>().DOMove(previousPosition, 0.5f);
     }
 
 

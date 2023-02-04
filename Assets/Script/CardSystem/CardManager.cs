@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
-
+using DG.Tweening;
 public class CardManager : MonoBehaviour
 {
 
@@ -73,19 +73,37 @@ public class CardManager : MonoBehaviour
         CardPosClass cardPosClass = new CardPosClass();
 
         newCardPos.GetComponent<CardDisplaySetting>().card = drawCard;
-        newCardPos.transform.parent = this.transform;
-        newCardPos.transform.localScale = new Vector3(1, 1, 1);
-        
+        newCardPos.transform.SetParent(this.transform);
+        newCardPos.transform.localScale = Vector3.one;
+
         //initial the storage class
         cardPosClass.CardPos = newCardPos;
         cardPosClass.card = drawCard;
         cardPosClass.CardIndexOnHand = CardIndexOnHand;
 
         newCardPos.GetComponent<CardPlayController>().cardPos = cardPosClass;
-
+        //set  start animation
+        //newCardPos.SetActive(false);
         CardIndexOnHand += 1;
         cardOnHand.Add(cardPosClass);
     }
+
+    //IEnumerator cardDrawAnimation(GameObject card)
+    //{
+    //    card.SetActive(false);
+
+    //    yield return new WaitForSeconds(0.1f);
+
+    //    card.SetActive(true);
+        
+    //    RectTransform CardTransform = card.transform.GetComponent<RectTransform>();
+
+    //    Vector3 finalPosition = CardTransform.position;
+    //    Debug.Log(finalPosition);
+    //    Vector3 PositionFrom = new Vector3(1800, -300, 0);
+
+    //    CardTransform.DOMove(CardTransform.position, 1.0f).From(PositionFrom);
+    //}
 
     public void PlayCard(int index) {
 
@@ -118,6 +136,5 @@ public class CardManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
