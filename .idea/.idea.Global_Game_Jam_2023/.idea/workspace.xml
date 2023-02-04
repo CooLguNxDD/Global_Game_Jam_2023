@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea883fa4-39ca-4c02-a00f-4738ed644718" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Global_Game_Jam_2023/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Global_Game_Jam_2023/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/CW/LeanCommon/LeanCommon.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/CW/LeanCommon/LeanCommon.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/CW/LeanTouch/LeanTouch.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/CW/LeanTouch/LeanTouch.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/CW/Shared/Common/CW.Common.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/CW/Shared/Common/CW.Common.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/test_card_Andrew.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/test_card_Andrew.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CardSystem/CardManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CardSystem/CardManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/CardImagePrefab/CardBG.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/CardImagePrefab/CardBG.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/CardSystem/CardDisplaySetting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CardSystem/CardDisplaySetting.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/CardSystem/CardPlayController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CardSystem/CardPlayController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Global/Global.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Global/Global.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Tile/hoverable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Tile/hoverable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1675459195073</updated>
       <workItem from="1675459199075" duration="163000" />
-      <workItem from="1675459560134" duration="3517000" />
+      <workItem from="1675459560134" duration="4994000" />
     </task>
     <servers />
   </component>

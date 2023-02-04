@@ -11,10 +11,15 @@ public class CardPlayController : MonoBehaviour
 
     public Global global;
     private Vector3 _previousPosition;
+    
+    private CardDisplaySetting _cardDisplaySetting;
+    private RectTransform _rectTransform;
 
     public void Start()
     {
         cardSystem = this.transform.GetComponentInParent<CardManager>();
+        _cardDisplaySetting = CardPosClass.CardPos.GetComponent<CardDisplaySetting>();
+        _rectTransform = transform.GetComponent<RectTransform>();
         global = cardSystem.global;
 
     }
@@ -25,11 +30,12 @@ public class CardPlayController : MonoBehaviour
 
         if (_previousPosition == Vector3.zero)
         {
-            _previousPosition = this.transform.GetComponent<RectTransform>().position;
+            _previousPosition = _rectTransform.position;
         }
 
-        CardPosClass.CardPos.GetComponent<CardDisplaySetting>().SetAlpha(0.75f);
-        this.transform.GetComponent<RectTransform>().localScale = Vector3.one * 0.5f;
+        _cardDisplaySetting.SetAlpha(0.75f);
+        _cardDisplaySetting.SetOnDragging(true);
+        _rectTransform.localScale = Vector3.one * 0.5f;
 
         Debug.Log(_previousPosition);
         //Debug.Log(cardPos.CardIndexOnHand);
@@ -53,7 +59,7 @@ public class CardPlayController : MonoBehaviour
     public void CardBackToEnd()
     {
         
-        this.transform.GetComponent<RectTransform>().DOMove(_previousPosition, 0.25f);
+        _rectTransform.DOMove(_previousPosition, 0.25f);
     }
 
     public void MouseUp()
@@ -70,9 +76,9 @@ public class CardPlayController : MonoBehaviour
             }
             Debug.Log("not enough cost");
         }
-        Debug.Log("invalid area");
-        transform.GetComponent<RectTransform>().localScale = Vector3.one;
-        CardPosClass.CardPos.GetComponent<CardDisplaySetting>().SetAlpha(1f);
+        _rectTransform.localScale = Vector3.one;
+        _cardDisplaySetting.SetAlpha(1f);
+        _cardDisplaySetting.SetOnDragging(false);
         
         CardBackToEnd();
         //set dragging to false
