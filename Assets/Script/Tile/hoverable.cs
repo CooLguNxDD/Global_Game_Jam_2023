@@ -1,31 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class hoverable : MonoBehaviour
 {
+
+    private Color _originalColor;
     // Start is called before the first frame update
-    public Global global;
-    private void Awake()
+    public void Start()
     {
-        if (global == null) global = transform.GetComponentInParent<Global>();
+        _originalColor = transform.GetComponent<SpriteRenderer>().color;
     }
+
     private void OnMouseEnter()
     {
-        if (global.draggingCard)
+        if (Global.draggingCard)
         {
             // Debug.Log("enter");
-            global.isValidLocation = true;
+            Global.isValidLocation = true;
             transform.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
     private void OnMouseExit()
     {
-        if (global.draggingCard)
+        if (Global.draggingCard)
         {
             // Debug.Log("exit");
-            global.isValidLocation = false;
-            transform.GetComponent<SpriteRenderer>().color = Color.white;
+            Global.isValidLocation = false;
+            transform.GetComponent<SpriteRenderer>().color = _originalColor;
         }
     }
 }

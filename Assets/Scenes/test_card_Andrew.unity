@@ -638,7 +638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9001443e799d2846b9f4bd1354d3d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  global: {fileID: 750440759}
   fullDeck:
   - {fileID: 11400000, guid: c3d079179d9a6e843a668854a160967b, type: 2}
   - {fileID: 11400000, guid: 8ba4295a998118c4a82e443cee977c07, type: 2}
@@ -687,7 +686,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 750440760}
-  - component: {fileID: 750440759}
   m_Layer: 0
   m_Name: Global
   m_TagString: Untagged
@@ -695,21 +693,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &750440759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750440758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35d64a41871f3b4c91599cae035821f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Nutrition: 10
-  Water: 10
-  isDragging: 0
 --- !u!4 &750440760
 Transform:
   m_ObjectHideFlags: 0
@@ -990,7 +973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1a037fad3f4fb469e3e78b923eebcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  global: {fileID: 750440759}
   emptyRatio: 0.7
   waterRatio: 0.1
   nutrientRatio: 0.1
@@ -1168,7 +1150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964912913}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.40600002, y: -1.405, z: 0}
+  m_LocalPosition: {x: -2.405, y: -1.405, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1187,7 +1169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7fd13be61f79664d972a72d258c05e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  global: {fileID: 750440759}
 --- !u!61 &1964912917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1198,7 +1179,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

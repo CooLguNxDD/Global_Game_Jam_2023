@@ -14,8 +14,7 @@ public class TileManager : MonoBehaviour
         ROCK,
         ENEMY_NEST
     }
-
-    public Global global;
+    
 
     public static int row = 50;
     public static int column = 50;

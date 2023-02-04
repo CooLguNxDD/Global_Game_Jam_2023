@@ -6,8 +6,6 @@ using UnityEngine;
 using DG.Tweening;
 public class CardManager : MonoBehaviour
 {
-
-    public Global global;
     // full deck
     public List<Card> fullDeck = new();
 

@@ -8,8 +8,7 @@ public class CardPlayController : MonoBehaviour
     // Start is called before the first frame update
     public CardManager cardSystem;
     public CardPosClass CardPosClass;
-
-    public Global global;
+    
     private Vector3 _previousPosition;
     
     private CardDisplaySetting _cardDisplaySetting;
@@ -20,13 +19,12 @@ public class CardPlayController : MonoBehaviour
         cardSystem = this.transform.GetComponentInParent<CardManager>();
         _cardDisplaySetting = CardPosClass.CardPos.GetComponent<CardDisplaySetting>();
         _rectTransform = transform.GetComponent<RectTransform>();
-        global = cardSystem.global;
 
     }
     public void MouseDown() {
         //start dragging
         
-        global.draggingCard = CardPosClass.card;
+        Global.draggingCard = CardPosClass.card;
 
         if (_previousPosition == Vector3.zero)
         {
@@ -43,13 +41,13 @@ public class CardPlayController : MonoBehaviour
 
     public bool ValidCost()
     {
-        if (global.Nutrition > CardPosClass.card.NutritionCost &&
-            global.Water > CardPosClass.card.WaterCost)
+        if (Global.Nutrition > CardPosClass.card.NutritionCost &&
+            Global.Water > CardPosClass.card.WaterCost)
         {
-            global.Nutrition -= CardPosClass.card.NutritionCost; 
-            global.Water -= CardPosClass.card.WaterCost;
-            Debug.Log(global.Nutrition);
-            Debug.Log(global.Water);
+            Global.Nutrition -= CardPosClass.card.NutritionCost; 
+            Global.Water -= CardPosClass.card.WaterCost;
+            Debug.Log(Global.Nutrition);
+            Debug.Log(Global.Water);
             return true;
         }
         
@@ -66,7 +64,7 @@ public class CardPlayController : MonoBehaviour
     {
         //start dragging
         
-        if (global.isValidLocation && global.draggingCard)
+        if (Global.isValidLocation && Global.draggingCard)
         {
             if (ValidCost())
             {
@@ -82,7 +80,7 @@ public class CardPlayController : MonoBehaviour
         
         CardBackToEnd();
         //set dragging to false
-        global.draggingCard = null;
+        Global.draggingCard = null;
         //Debug.Log("up");
     }
 }

@@ -44,7 +44,6 @@ public class CardDisplaySetting : MonoBehaviour
         else infoGroup.alpha = 1;
 
     }
-
     void Start()
     {
         if (card)
@@ -56,7 +55,6 @@ public class CardDisplaySetting : MonoBehaviour
             Description.text = card.Description;
 
             Creature.sprite = card.CardImage;
-
         }
     }
 }
