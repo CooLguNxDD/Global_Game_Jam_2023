@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
+
+    public Global global;
     // full deck
     public List<Card> fullDeck = new List<Card>();
 
@@ -49,6 +51,7 @@ public class CardManager : MonoBehaviour
 
     public void DrawCard()
     {
+        // shuffle when no more card
         if (currentCards.Count == 0)
         {
             Shuffle();
@@ -57,7 +60,6 @@ public class CardManager : MonoBehaviour
         {
             // dequeue when draw a card
             Card drawCard = currentCards.Dequeue();
-            Debug.Log(drawCard.Name);
             DisplayCardOnHand(drawCard);
             CardCount++;
         }
@@ -73,7 +75,8 @@ public class CardManager : MonoBehaviour
         newCardPos.GetComponent<CardDisplaySetting>().card = drawCard;
         newCardPos.transform.parent = this.transform;
         newCardPos.transform.localScale = new Vector3(1, 1, 1);
-
+        
+        //initial the storage class
         cardPosClass.CardPos = newCardPos;
         cardPosClass.card = drawCard;
         cardPosClass.CardIndexOnHand = CardIndexOnHand;
@@ -81,21 +84,27 @@ public class CardManager : MonoBehaviour
         newCardPos.GetComponent<CardPlayController>().cardPos = cardPosClass;
 
         CardIndexOnHand += 1;
-        Debug.Log(CardIndexOnHand);
         cardOnHand.Add(cardPosClass);
     }
 
     public void PlayCard(int index) {
+
         //play card will be called in CardPlayController
+        int cardListIndex = 0;
         foreach(CardPosClass pos in cardOnHand)
         {
             //can only play the card on hand with same "onhand" index 
             if(pos.CardIndexOnHand == index)
             {
-                Destroy(pos.CardPos);
+                pos.CardPos.SetActive(false);
                 discardPile.Enqueue(pos.card);
                 CardCount -= 1;
+
+                //error here????
+                cardOnHand.RemoveAt(cardListIndex);
+                return;
             }
+            cardListIndex++;
         }
         
     }
