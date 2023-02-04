@@ -19,6 +19,4 @@ public class Card : ScriptableObject
 
     public Sprite CardImage;
 
-
-
 }

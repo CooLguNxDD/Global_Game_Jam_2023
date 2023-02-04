@@ -6,15 +6,23 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-
+    // full deck
     public List<Card> fullDeck = new List<Card>();
+
+    // current cards can be drawed
     public Queue<Card> currentCards = new Queue<Card>();
+
+    //discard pile for special deck build
     public Queue<Card> discardPile = new Queue<Card>();
+
+    // the cards that in player's hand
     public List<Card> cardOnHand = new List<Card>();
 
-    public Transform[] cardPostion;
-    public bool[] avaiableCardSlot;
+    public int MaxCardOnHand = 5;
+    public GameObject CardDisplayPrefab;
 
+    private int CardCount = 0;
+    
     public void Shuffle()
     {
         List<Card> tmp = fullDeck.ToList<Card>();
@@ -33,28 +41,29 @@ public class CardManager : MonoBehaviour
 
     public void DrawCard()
     {
-
-        Card drawCard = currentCards.Dequeue();
-        Debug.Log(drawCard.Name);
-        DisplayCardOnHand(drawCard);
+        if (CardCount < MaxCardOnHand)
+        {
+            // dequeue when draw a card
+            Card drawCard = currentCards.Dequeue();
+            Debug.Log(drawCard.Name);
+            DisplayCardOnHand(drawCard);
+            CardCount++;
+        }
     }
 
     public void DisplayCardOnHand(Card drawCard)
     {
-        for (int i = 0; i < avaiableCardSlot.Length; i++)
-        {
-            if (!avaiableCardSlot[i]) 
-            {
-                avaiableCardSlot[i] = true;
-                cardPostion[i].gameObject.SetActive(true);
-                GameObject child = cardPostion[i].gameObject.transform.GetChild(0).gameObject;
-                child.GetComponent<CardDisplaySetting>().card = drawCard;
-                return;
-            }
-        }
+        // spawn a new position to display card!
+
+        GameObject newPos = Instantiate(CardDisplayPrefab);
+        cardOnHand.Add(drawCard);
+        newPos.GetComponent<CardDisplaySetting>().card = drawCard;
+        newPos.transform.parent = this.transform;
+        newPos.transform.localScale = new Vector3(1,1,1);
     }
 
     public void PlayCard(int index) {
+
         discardPile.Enqueue(cardOnHand[index]);
         cardOnHand.RemoveAt(index);
     }
