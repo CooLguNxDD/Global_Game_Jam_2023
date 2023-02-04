@@ -32,7 +32,7 @@ public class CardDisplaySetting : MonoBehaviour
             //Debug.Log(card.Name);
             Flag_Text.text = card.Name;
             NutritionCost.text = card.NutritionCost.ToString();
-            WaterCost.text = card.NutritionCost.ToString();
+            WaterCost.text = card.WaterCost.ToString();
             Description.text = card.Description;
 
             CardImage.sprite = card.CardImage;
