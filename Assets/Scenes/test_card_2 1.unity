@@ -1083,10 +1083,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1a037fad3f4fb469e3e78b923eebcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  row: 51
+  column: 51
   emptyRatio: 0.7
   waterRatio: 0.1
   nutrientRatio: 0.1
   rockRatio: 0.1
-  offsetGrid: 0.1
-  initialPosition: {x: -4.7, y: -9.57, z: -3.24}
+  initialPosition: {x: -26.5, y: -50.51, z: -3.24}
   cellSize: 1
