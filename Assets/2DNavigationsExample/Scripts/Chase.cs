@@ -8,6 +8,7 @@ public class Chase : MonoBehaviour
     private bool stop;
     public bool showPath;
     public bool showAhead;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,6 @@ public class Chase : MonoBehaviour
         if ((transform.position - target.transform.position).magnitude < 1 && !stop)
         {
             stop = true;
-            target.GetComponent<Navigate>().enabled = false;
         }
         agent.SetDestination(target.transform.position);
     }

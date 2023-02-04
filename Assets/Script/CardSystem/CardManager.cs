@@ -6,36 +6,35 @@ using UnityEngine;
 using DG.Tweening;
 public class CardManager : MonoBehaviour
 {
-
-    public Global global;
     // full deck
-    public List<Card> fullDeck = new List<Card>();
+    public List<Card> fullDeck = new();
 
     // current cards can be drawed
-    public Queue<Card> currentCards = new Queue<Card>();
+    public Queue<Card> DrawPile = new();
 
     //discard pile for special deck build
-    public Queue<Card> discardPile = new Queue<Card>();
+    public Queue<Card> DiscardPile = new();
 
     // the cards that in player's hand
-    public List<CardPosClass> cardOnHand = new List<CardPosClass>();
+    public List<CardPosClass> CardOnHand = new();
 
-    public int MaxCardOnHand = 5;
-    public GameObject CardDisplayPrefab;
+    public int maxCardOnHand = 5;
+    public GameObject cardDisplayPrefab;
 
     // index to check each unique card draw to player' hands
     //start from 0 to infinite
-    private int CardIndexOnHand; 
-    private int CardCount;
+    private int _cardIndexOnHand; 
+    private int _cardCount;
 
     public void Awake()
     {
-        CardIndexOnHand = 0;
-        CardCount = 0;
+        _cardIndexOnHand = 0;
+        _cardCount = 0;
     }
     public void Shuffle()
     {
-        List<Card> tmp = fullDeck.ToList<Card>();
+        List<Card> tmp = fullDeck.ToList();
+        
         Queue<Card> tmpCurrentCards = new Queue<Card>();
         System.Random r = new System.Random();
         while(tmp.Count > 0)
@@ -44,48 +43,46 @@ public class CardManager : MonoBehaviour
             tmpCurrentCards.Enqueue(tmp[index]);
             tmp.RemoveAt(index);
         }
-        this.currentCards = tmpCurrentCards;
-
-        Debug.Log(currentCards.Count);
+        this.DrawPile = tmpCurrentCards;
     }
 
     public void DrawCard()
     {
         // shuffle when no more card
-        if (currentCards.Count == 0)
-        {
-            Shuffle();
-        }
-        if (CardCount < MaxCardOnHand)
+        if (DrawPile.Count == 0) Shuffle();
+        
+        if (_cardCount < maxCardOnHand)
         {
             // dequeue when draw a card
-            Card drawCard = currentCards.Dequeue();
+            Card drawCard = DrawPile.Dequeue();
             DisplayCardOnHand(drawCard);
-            CardCount++;
+            _cardCount++;
         }
     }
 
     public void DisplayCardOnHand(Card drawCard)
     {
-        // spawn a new position to display card!
+        // spawn a new UI position to display card!
 
-        GameObject newCardPos = Instantiate(CardDisplayPrefab);
-        CardPosClass cardPosClass = new CardPosClass();
-
+        GameObject newCardPos = Instantiate(cardDisplayPrefab, this.transform, true);
         newCardPos.GetComponent<CardDisplaySetting>().card = drawCard;
-        newCardPos.transform.SetParent(this.transform);
         newCardPos.transform.localScale = Vector3.one;
-
+        
         //initial the storage class
+        CardPosClass cardPosClass = new CardPosClass();
         cardPosClass.CardPos = newCardPos;
         cardPosClass.card = drawCard;
-        cardPosClass.CardIndexOnHand = CardIndexOnHand;
-
-        newCardPos.GetComponent<CardPlayController>().cardPosClass = cardPosClass;
-        //set  start animation
+        cardPosClass.CardIndexOnHand = _cardIndexOnHand;
+        
+        //storage info into CardPlayController
+        newCardPos.GetComponent<CardPlayController>().CardPosClass = cardPosClass;
+        
+        // add card info to hand
+        CardOnHand.Add(cardPosClass);
+        
+        //set start animation
         //newCardPos.SetActive(false);
-        CardIndexOnHand += 1;
-        cardOnHand.Add(cardPosClass);
+        _cardIndexOnHand += 1;
     }
 
     //IEnumerator cardDrawAnimation(GameObject card)
@@ -109,22 +106,21 @@ public class CardManager : MonoBehaviour
 
         //play card will be called in CardPlayController
         int cardListIndex = 0;
-        foreach(CardPosClass pos in cardOnHand)
+        foreach(CardPosClass pos in CardOnHand)
         {
             //can only play the card on hand with same "onhand" index 
             if(pos.CardIndexOnHand == index)
             {
                 pos.CardPos.SetActive(false);
-                discardPile.Enqueue(pos.card);
-                CardCount -= 1;
+                DiscardPile.Enqueue(pos.card);
+                _cardCount -= 1;
 
                 //error here????
-                cardOnHand.RemoveAt(cardListIndex);
+                CardOnHand.RemoveAt(cardListIndex);
                 return;
             }
             cardListIndex++;
         }
-        
     }
 
     // Start is called before the first frame update
