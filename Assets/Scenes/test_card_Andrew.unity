@@ -679,8 +679,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35d64a41871f3b4c91599cae035821f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nutrition: 10
-  Water: 10
+  Nutrition: 100
+  Water: 100
 --- !u!4 &750440760
 Transform:
   m_ObjectHideFlags: 0
