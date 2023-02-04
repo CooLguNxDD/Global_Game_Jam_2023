@@ -16,13 +16,21 @@ public class CardManager : MonoBehaviour
     public Queue<Card> discardPile = new Queue<Card>();
 
     // the cards that in player's hand
-    public List<Card> cardOnHand = new List<Card>();
+    public List<CardPosClass> cardOnHand = new List<CardPosClass>();
 
     public int MaxCardOnHand = 5;
     public GameObject CardDisplayPrefab;
 
-    private int CardCount = 0;
-    
+    // index to check each unique card draw to player' hands
+    //start from 0 to infinite
+    private int CardIndexOnHand; 
+    private int CardCount;
+
+    public void Awake()
+    {
+        CardIndexOnHand = 0;
+        CardCount = 0;
+    }
     public void Shuffle()
     {
         List<Card> tmp = fullDeck.ToList<Card>();
@@ -41,6 +49,10 @@ public class CardManager : MonoBehaviour
 
     public void DrawCard()
     {
+        if (currentCards.Count == 0)
+        {
+            Shuffle();
+        }
         if (CardCount < MaxCardOnHand)
         {
             // dequeue when draw a card
@@ -55,17 +67,37 @@ public class CardManager : MonoBehaviour
     {
         // spawn a new position to display card!
 
-        GameObject newPos = Instantiate(CardDisplayPrefab);
-        cardOnHand.Add(drawCard);
-        newPos.GetComponent<CardDisplaySetting>().card = drawCard;
-        newPos.transform.parent = this.transform;
-        newPos.transform.localScale = new Vector3(1,1,1);
+        GameObject newCardPos = Instantiate(CardDisplayPrefab);
+        CardPosClass cardPosClass = new CardPosClass();
+
+        newCardPos.GetComponent<CardDisplaySetting>().card = drawCard;
+        newCardPos.transform.parent = this.transform;
+        newCardPos.transform.localScale = new Vector3(1, 1, 1);
+
+        cardPosClass.CardPos = newCardPos;
+        cardPosClass.card = drawCard;
+        cardPosClass.CardIndexOnHand = CardIndexOnHand;
+
+        newCardPos.GetComponent<CardPlayController>().cardPos = cardPosClass;
+
+        CardIndexOnHand += 1;
+        Debug.Log(CardIndexOnHand);
+        cardOnHand.Add(cardPosClass);
     }
 
     public void PlayCard(int index) {
-
-        discardPile.Enqueue(cardOnHand[index]);
-        cardOnHand.RemoveAt(index);
+        //play card will be called in CardPlayController
+        foreach(CardPosClass pos in cardOnHand)
+        {
+            //can only play the card on hand with same "onhand" index 
+            if(pos.CardIndexOnHand == index)
+            {
+                Destroy(pos.CardPos);
+                discardPile.Enqueue(pos.card);
+                CardCount -= 1;
+            }
+        }
+        
     }
 
     // Start is called before the first frame update

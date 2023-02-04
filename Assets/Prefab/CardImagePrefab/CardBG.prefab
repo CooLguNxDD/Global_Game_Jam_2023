@@ -579,7 +579,19 @@ MonoBehaviour:
   selfSelected: 0
   onSelected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7796142949750094044}
+        m_TargetAssemblyTypeName: CardPlayController, Assembly-CSharp
+        m_MethodName: MouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDeselected:
     m_PersistentCalls:
       m_Calls: []
@@ -590,13 +602,13 @@ MonoBehaviour:
   onSelectedFingerUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7217282346531904259}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 7796142949750094044}
+        m_TargetAssemblyTypeName: CardPlayController, Assembly-CSharp
+        m_MethodName: MouseUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -641,6 +653,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6464f079d666ede44b03d40cbf5efc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardSystem: {fileID: 0}
+  CardIndexOnHand: 0
 --- !u!1 &7217282346637874146
 GameObject:
   m_ObjectHideFlags: 0
