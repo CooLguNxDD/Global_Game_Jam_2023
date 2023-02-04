@@ -654,7 +654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardSystem: {fileID: 0}
-  CardIndexOnHand: 0
 --- !u!1 &7217282346637874146
 GameObject:
   m_ObjectHideFlags: 0
