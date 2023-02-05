@@ -17,6 +17,9 @@ public class Global : MonoBehaviour
     public int nutrition;
     public int water;
 
+    public int nutritionProfit;
+    public int waterProfit;
+
     //global variable
     public int Nutrition
     {
@@ -31,7 +34,7 @@ public class Global : MonoBehaviour
 
             nutrition = value;
 
-            onNutritionChange.Invoke(""+value + $"(+{NutritionProfit})");
+            onNutritionChange.Invoke(""+value + $"(+{nutritionProfit})");
         }
     }
 
@@ -48,12 +51,11 @@ public class Global : MonoBehaviour
 
             water = value;
 
-            onWaterChange.Invoke(""+value + $"(+{WaterProfit})");
+            onWaterChange.Invoke(""+value + $"(+{waterProfit})");
         }
     }
 
-    public int nutritionProfit;
-    public int waterProfit;
+
 
     public int NutritionProfit
     {

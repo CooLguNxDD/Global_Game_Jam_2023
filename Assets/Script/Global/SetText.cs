@@ -7,7 +7,7 @@ public class SetText : MonoBehaviour
 {
     public TextMeshProUGUI _TMPtext;
 
-    void Start()
+    void Awake()
     {
         if (_TMPtext == null)
         {
