@@ -37,7 +37,7 @@ public class CardPlayController : MonoBehaviour
         _cardDisplaySetting.SetOnDragging(true);
         _rectTransform.localScale = Vector3.one * 0.5f;
 
-        Debug.Log(_previousPosition);
+        // Debug.Log(_previousPosition);
         //Debug.Log(cardPos.CardIndexOnHand);
     }
 
@@ -83,9 +83,14 @@ public class CardPlayController : MonoBehaviour
                 Tile source = Global.instance.buildOn.GetComponent<Tile>();
                 (int, int) xy = (source.x, source.y);
                 Vector3 pos = Global.instance.buildOn.transform.position;
-                TileManager.instance.board[xy.Item1, xy.Item2] = (int)cardPosClass.card.spwanableObject.transform.Find("Square").GetComponent<Tile>().type;
-                Destroy(TileManager.instance.board_pieces[xy.Item1, xy.Item2].gameObject);
+                
+                int oldType = TileManager.instance.board[source.x, source.y];
 
+                TileManager.instance.board[xy.Item1, xy.Item2] = (int)cardPosClass.card.spwanableObject.transform.Find("Square").GetComponent<Tile>().type;
+                
+                
+                Destroy(TileManager.instance.board_pieces[xy.Item1, xy.Item2].gameObject);
+                    
                 TileManager.instance.board_pieces[xy.Item1, xy.Item2] = Instantiate(cardPosClass.card.spwanableObject, 
 
                     pos, Quaternion.identity,
@@ -96,6 +101,8 @@ public class CardPlayController : MonoBehaviour
                 Transform thisObject = TileManager.instance.board_pieces[xy.Item1, xy.Item2];
                 pos = thisObject.position;
                 thisObject.position = new Vector3(pos.x, pos.y, 0f);
+                
+                
                 
                 
                 thisObject.Find("Square").GetComponent<Tile>().setXY(xy.Item1, xy.Item2);

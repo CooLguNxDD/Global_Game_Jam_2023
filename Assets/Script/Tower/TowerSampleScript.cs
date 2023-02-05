@@ -8,12 +8,12 @@ using UnityEngine;
 public class TowerSampleScript : MonoBehaviour
 {
     public Tower tower;
-    public int HP;
-
+    public GameObject originalTile;
     public GameObject towerImage;
     public GameObject towerBG;
 
     public CircleCollider2D RangeCircleCollider;
+    public int currentHP;
 
     //enemy checking
     private bool enemyExist;
@@ -33,7 +33,7 @@ public class TowerSampleScript : MonoBehaviour
 
     private void Start()
     {
-        this.HP = tower.HP;
+        currentHP = tower.HP;
         if (Global.TileType.TOWER == tower.type)
         {
             _isShooting = false;
@@ -58,6 +58,7 @@ public class TowerSampleScript : MonoBehaviour
         controller.target = enemyList[0].transform.position;
         controller.speed = tower.projectileSpeed;
         controller.stayTime = tower.projectileStayTime;
+        controller.damage = tower.damage;
     }
 
     private void LookAt2D(Transform current, Transform others ,float RotationOffset, float RotationSpeed)
@@ -119,10 +120,16 @@ public class TowerSampleScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (currentHP < 0)
+        {
+            Destroy(gameObject);
+        }
         if(Global.TileType.TOWER != tower.type) return;
         if (enemyExist && enemyList.Count > 0) 
         {
             LookAt2D(transform, enemyList[0].transform ,tower.rotationOffset, tower.rotationSpeed);
         }
+
+
     }
 }

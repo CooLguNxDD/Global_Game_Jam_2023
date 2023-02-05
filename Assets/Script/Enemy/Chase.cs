@@ -14,6 +14,10 @@ public class Chase : MonoBehaviour
     public bool showPath;
     public bool showAhead;
 
+    public int currentHP;
+
+    public GameObject parentObject;
+
     private Rigidbody2D _rigidbody2D;
     private bool isAttacking = false;
     
@@ -24,6 +28,7 @@ public class Chase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHP = enemy.HP;
         tileList = new List<GameObject>();
         agent = GetComponent<NavMeshAgent>();
         
@@ -39,9 +44,9 @@ public class Chase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy.HP < 0)
+        if (currentHP < 0)
         {
-            Destroy(gameObject);
+            Destroy(parentObject);
         }
 
         if (tileExist && tileList.Count > 0)
@@ -98,7 +103,7 @@ public class Chase : MonoBehaviour
         yield return new WaitForSeconds(enemy.attackDuration);
         if (isAttacking)
         {
-            tileList[0].transform.GetComponent<TowerSampleScript>().HP -= enemy.attackDamage;
+            tileList[0].transform.GetComponent<TowerSampleScript>().currentHP -= enemy.attackDamage;
         }
         isAttacking = false;
     }
