@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class Global : MonoBehaviour
 
@@ -10,25 +11,114 @@ public class Global : MonoBehaviour
     public static Global instance;
     public GameObject WaterText;
     public GameObject NutrientText;
+    public UnityEvent<string> onNutritionChange;
+    public UnityEvent<string> onWaterChange;
+
+    public int nutrition;
+    public int water;
 
     //global variable
-    public int Nutrition = 100;
-    
-    public int Water = 100;
+    public int Nutrition
+    {
+        get
+        {
+            return nutrition;
+        }
+        set
+        {
+            if (nutrition == value)
+                return;
 
-    public int NutritionProfit = 1;
-    public int WaterProfit = 1;
+            nutrition = value;
+
+            onNutritionChange.Invoke(""+value + $"(+{NutritionProfit})");
+        }
+    }
+
+    public int Water
+    {
+        get
+        {
+            return water;
+        }
+        set
+        {
+            if (water == value)
+                return;
+
+            water = value;
+
+            onWaterChange.Invoke(""+value + $"(+{WaterProfit})");
+        }
+    }
+
+    public int nutritionProfit;
+    public int waterProfit;
+
+    public int NutritionProfit
+    {
+        get
+        {
+            return nutritionProfit;
+        }
+        set
+        {
+            if (nutritionProfit == value)
+                return;
+
+            nutritionProfit = value;
+
+            onNutritionChange.Invoke(""+Nutrition + $"(+{value})");
+        }
+    }
+    public int WaterProfit
+    {
+        get
+        {
+            return waterProfit;
+        }
+        set
+        {
+            if (waterProfit == value)
+                return;
+
+            waterProfit = value;
+
+            onWaterChange.Invoke(""+Water + $"(+{value})");
+        }
+    }
+
 
     public void SetNutrition(int value)
     {
         Nutrition = value;
-        NutrientText.transform.GetComponent<TextMeshProUGUI>().text = ""+value+" (+"+NutritionProfit+")";
     }
 
     public void SetWater(int value)
     {
         Water = value;
-        WaterText.transform.GetComponent<TextMeshProUGUI>().text = ""+value+" (+"+WaterProfit+")";
+    }
+
+    public void SetNutritionProfit(int value)
+    {
+        NutritionProfit = value;
+    }
+
+    public void SetWaterProfit(int value)
+    {
+        WaterProfit = value;
+    }
+
+    public void CalculateTileProfit(TileType original, TileType target)
+    {
+        if (original == TileType.WATER && target == TileType.ROOT)
+        {
+            WaterProfit++;
+        }
+        if (original == TileType.NUTRIENT && target == TileType.ROOT)
+        {
+            NutritionProfit++;
+        }
     }
     
     // game controller elements
@@ -67,8 +157,8 @@ public class Global : MonoBehaviour
     {
         while(true)
         {
-            SetNutrition(Nutrition+NutritionProfit);
-            SetWater(Water+WaterProfit);
+            SetNutrition(nutrition+nutritionProfit);
+            SetWater(water+waterProfit);
             yield return new WaitForSeconds(3);
         }
         
