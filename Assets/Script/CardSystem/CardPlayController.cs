@@ -99,7 +99,13 @@ public class CardPlayController : MonoBehaviour
                 
                 thisObject.Find("Square").GetComponent<Tile>().setXY(xy.Item1, xy.Item2);
                 thisObject.Find("Square").GetComponent<Tile>().isBuildAble = false;
+                thisObject.Find("Square").GetComponent<Tile>().UpdateArt();
                 TileManager.instance.updateNeighborBuildableAt(xy.Item1, xy.Item2);
+                List<Transform> neighbors = TileManager.instance.GetNeighborTile(xy.Item1, xy.Item2);
+                for (int i=0; i<neighbors.Count;i++)
+                {
+                    neighbors[i].Find("Square").GetComponent<Tile>().UpdateArt();
+                }
                 // source.type = CardPosClass.card.type;
                 
                 SetTowerScriptable(TileManager.instance.board_pieces[xy.Item1, xy.Item2]);

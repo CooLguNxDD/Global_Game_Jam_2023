@@ -289,6 +289,18 @@ MonoBehaviour:
   x: 0
   y: 0
   isBuildAble: 0
+  target_art: {fileID: 3739455557736826822}
+  branchAll: {fileID: 21300000, guid: b8365632e3c9ad14aae0738e4cffaaf5, type: 3}
+  branchH: {fileID: 21300000, guid: 412929b373b057242b33782f0a3284bd, type: 3}
+  branchV: {fileID: 21300000, guid: a1d593e702d407d44a861cfbd559ed9d, type: 3}
+  branchLNE: {fileID: 21300000, guid: f906b743b39113444954f6b24a1b971d, type: 3}
+  branchLNW: {fileID: 21300000, guid: d4d542bbd93405b408609edb2735eba1, type: 3}
+  branchLSE: {fileID: 21300000, guid: dd60de3d08fee014b80deb6f8f93673a, type: 3}
+  branchLSW: {fileID: 21300000, guid: 7a1687fb084dab248bedd6d34759ddf1, type: 3}
+  branchTDown: {fileID: 21300000, guid: 8626a21499e49294780f128eeb3f0cf0, type: 3}
+  branchTUp: {fileID: 21300000, guid: 0346fec6d1bb91c458bdfd36e09a78a7, type: 3}
+  branchTLeft: {fileID: 21300000, guid: 27ce011dc5760c440bfe848d1896246a, type: 3}
+  branchTRight: {fileID: 21300000, guid: 61b3270f3b74d6146a218e535e831170, type: 3}
 --- !u!114 &6156496426325662416
 MonoBehaviour:
   m_ObjectHideFlags: 0
