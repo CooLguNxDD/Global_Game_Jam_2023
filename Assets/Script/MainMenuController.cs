@@ -56,22 +56,7 @@ public class MainMenuController : MonoBehaviour
 
     void Start() {
         in_game = PlayerPrefs.GetInt("in_game");
-        GameObject startButton = GameObject.FindGameObjectWithTag("StartButton");
 
-        // PlayerPrefs.SetInt("map_seed",5);
-        // PlayerPrefs.SetInt("current_seed", 5);
-        if(in_game == 1 && startButton) {
-            Transform button = Resources.Load<Transform>("Prefebs/menuButton");
-            button.localScale = new Vector3(1, 1, 0);
-            Transform resume_button = Instantiate(button, startButton.transform.parent);
-            resume_button.GetComponent<RectTransform>().sizeDelta = new Vector2 (300, resume_button.GetComponent<RectTransform>().sizeDelta.y);
-            resume_button.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().text = "Resume";
-            resume_button.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().fontSize = 60;
-            resume_button.SetSiblingIndex(1);
-            resume_button.GetComponent<Button>().onClick.AddListener(delegate {resumeGame();});
-        }
-
-        Debug.Log("!!?");
         PanelManager.instance.setPanelSize(0.6f, 0.6f);
         PanelManager.instance.setPanelPosition(new Vector3(0,0,1));
     }
