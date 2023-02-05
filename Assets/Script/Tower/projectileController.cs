@@ -11,7 +11,7 @@ public class projectileController : MonoBehaviour
     public float speed = 20f;
     public float stayTime = 2f;
 
-    public GameObject target;
+    public Vector3 target;
     
     private Vector3 shootDir;
     
@@ -25,7 +25,7 @@ public class projectileController : MonoBehaviour
 
     private void Start()
     {
-        shootDir = (target.transform.position - transform.position).normalized;
+        shootDir = (target - transform.position).normalized;
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
         Destroy(gameObject, 5f);
     }
@@ -34,5 +34,4 @@ public class projectileController : MonoBehaviour
     {
         transform.position += shootDir * (speed * Time.deltaTime);
     }
-    
 }

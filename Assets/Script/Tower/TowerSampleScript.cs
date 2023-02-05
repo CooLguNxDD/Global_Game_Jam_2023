@@ -7,31 +7,49 @@ using UnityEngine;
 
 public class TowerSampleScript : MonoBehaviour
 {
-    //rotation setting
-    public float rotationSpeed;
-    public float rotationOffset;
-    
+    public Tower tower;
+
+    public GameObject towerImage;
+    public GameObject towerBG;
+
+    public CircleCollider2D RangeCircleCollider;
+
     //enemy checking
     private bool enemyExist;
-    
-    //todo: convert to scriptable object 
     private List<GameObject> enemyList;
 
     //shooting part
-
-    public GameObject projectile;
+    private bool _isShooting;
+    public event EventHandler OnShoot;
     public GameObject BulletSpawnPoint;
     
-    
-    public int reloadTime;
-    
-    private bool _isShooting;
-    
-
     private void Awake()
     {
         _isShooting = false;
         enemyList = new List<GameObject>();
+    }
+
+    private void Start()
+    {
+        OnShoot += ShootProjectile;
+        RangeCircleCollider.radius = tower.range;
+        Display();
+    }
+
+    public void Display()
+    {
+        towerImage.GetComponent<SpriteRenderer>().sprite = tower.TowerImage;
+        towerBG.GetComponent<SpriteRenderer>().sprite = tower.TowerBG;
+    }
+
+    public void ShootProjectile(object sender, EventArgs e)
+    {
+        GameObject bullet = Instantiate(tower.projectile, BulletSpawnPoint.transform.position, Quaternion.identity);
+
+        projectileController controller = bullet.GetComponent<projectileController>();
+        controller.target = enemyList[0].transform.position;
+        controller.speed = tower.projectileSpeed;
+        controller.stayTime = tower.projectileStayTime;
     }
 
     private void LookAt2D(Transform current, Transform others ,float RotationOffset, float RotationSpeed)
@@ -75,13 +93,15 @@ public class TowerSampleScript : MonoBehaviour
             enemyExist = false;
         }
     }
+    //subscribe to shoot event
     IEnumerator Shoot()
     {
         _isShooting = true;
-        yield return new WaitForSeconds(reloadTime);
-        GameObject bullet = Instantiate(projectile, BulletSpawnPoint.transform.position, Quaternion.identity);
-        bullet.GetComponent<projectileController>().target = enemyList[0];
+        yield return new WaitForSeconds(tower.reloadTime);
+        
+        OnShoot?.Invoke(this, EventArgs.Empty);
         _isShooting = false;
+        
         yield return null;
     }
 
@@ -89,7 +109,7 @@ public class TowerSampleScript : MonoBehaviour
     {
         if (enemyExist && enemyList[0])
         {
-            LookAt2D(transform, enemyList[0].transform ,rotationOffset, rotationSpeed);
+            LookAt2D(transform, enemyList[0].transform ,tower.rotationOffset, tower.rotationSpeed);
         }
     }
 }

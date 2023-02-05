@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff7a4850af92bd40af3a9d45d9b0872, type: 3}
+  m_Name: tower1
+  m_EditorClassIdentifier: 
+  TowerID: 1
+  rotationSpeed: 20
+  rotationOffset: 90
+  damage: 10
+  reloadTime: 1
+  range: 10
+  projectile: {fileID: 4908607112118784112, guid: e83984c9990fd1744b7c6e797913898e, type: 3}
+  TowerImage: {fileID: -781811279, guid: 04a7c9ebdd3607246b98a36a99ad9e3e, type: 3}
+  TowerBG: {fileID: 629177935, guid: 04a7c9ebdd3607246b98a36a99ad9e3e, type: 3}
