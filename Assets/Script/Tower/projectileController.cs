@@ -57,11 +57,6 @@ public class ProjectileController : MonoBehaviour
             SeekEnemy();
         }
 
-        if (!target)
-        {
-            gameObject.SetActive(false);
-        }
-
         interval += Time.deltaTime;
         if (stayTime < interval)
         {
@@ -76,7 +71,6 @@ public class ProjectileController : MonoBehaviour
         {
             Debug.Log(other.transform.GetComponent<Chase>().currentHP);
             other.transform.GetComponent<Chase>().currentHP -= (int)damage;
-            isTarget = false;
             gameObject.SetActive(false);
         }
     }
