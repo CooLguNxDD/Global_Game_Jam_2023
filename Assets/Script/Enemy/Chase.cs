@@ -30,7 +30,7 @@ public class Chase : MonoBehaviour
     public Vector3 scale;
 
     public float interval = 0.0f;
-    public float MaxLifeCycle = 60f;
+    public float MaxLifeCycle = 300f;
 
     // Start is called before the first frame update
     void Start()

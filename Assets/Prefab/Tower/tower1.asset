@@ -17,7 +17,7 @@ MonoBehaviour:
   rotationSpeed: 20
   rotationOffset: 90
   damage: 20
-  reloadTime: 1
+  reloadTime: 2
   range: 3
   HP: 80
   projectile: {fileID: 4908607112118784112, guid: e83984c9990fd1744b7c6e797913898e, type: 3}

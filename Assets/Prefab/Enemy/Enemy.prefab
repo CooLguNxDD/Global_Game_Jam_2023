@@ -112,7 +112,7 @@ NavMeshAgent:
   m_Height: 1.12
   m_BaseOffset: 0.84
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &7355155234365950080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +161,8 @@ MonoBehaviour:
   tileList: []
   tileExist: 0
   scale: {x: 0, y: 0, z: 0}
+  interval: 0
+  MaxLifeCycle: 300
 --- !u!61 &893847862058743183
 BoxCollider2D:
   m_ObjectHideFlags: 0

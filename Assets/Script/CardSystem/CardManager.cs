@@ -32,7 +32,7 @@ public class CardManager : MonoBehaviour
     //timer
     
     float interval = 0;
-    float maxInterval = 2.5f;
+    float maxInterval = 1.0f;
 
     public void Awake()
     {
