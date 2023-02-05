@@ -72,8 +72,22 @@ public class CardPlayController : MonoBehaviour
             {
                 Debug.Log("played a card");
                 cardSystem.PlayCard(CardPosClass.CardIndexOnHand);
-                Global.buildOn.GetComponent<SpriteRenderer>().sprite = CardPosClass.card.CardImage;
-                Global.buildOn.GetComponent<Tile>().type = CardPosClass.card.type;
+
+                Tile source = Global.buildOn.GetComponent<Tile>();
+                (int, int) xy = (source.x, source.y);
+                Vector3 pos = Global.buildOn.transform.position;
+                Destroy(TileManager.instance.board_pieces[xy.Item1, xy.Item2].gameObject);
+                TileManager.instance.board_pieces[xy.Item1, xy.Item2] = Instantiate(CardPosClass.card.spwanableObject, 
+                    pos,
+                    new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                    TileManager.instance.parent.transform
+                    
+                ).transform;
+                TileManager.instance.board[xy.Item1, xy.Item2] = (int)source.type;
+                TileManager.instance.board_pieces[xy.Item1, xy.Item2].Find("Square").GetComponent<Tile>().setXY(xy.Item1, xy.Item2);
+                TileManager.instance.board_pieces[xy.Item1, xy.Item2].Find("Square").GetComponent<Tile>().isBuildAble = false;
+                TileManager.instance.updateNeighborBuildableAt(xy.Item1, xy.Item2);
+                source.type = CardPosClass.card.type;
                 return;
             }
             Debug.Log("not enough cost");
