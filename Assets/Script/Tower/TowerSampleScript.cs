@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class TowerSampleScript : MonoBehaviour
 {
+    public Global.TileType type;
     public Tower tower;
     public GameObject originalTile;
     public GameObject towerImage;
@@ -122,7 +123,150 @@ public class TowerSampleScript : MonoBehaviour
     {
         if (currentHP < 0)
         {
-            Destroy(gameObject);
+            if (type == Global.TileType.ROOT)
+            {
+                Vector3 worldPos = gameObject.transform.parent.transform.position;
+                int x = GetComponent<Tile>().x;
+                int y = GetComponent<Tile>().y;
+                int oldType = TileManager.instance.board_old[x,y];
+
+
+                switch(oldType)
+                {
+                    case (int)Global.TileType.EMPTY:
+                        
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.groundPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = TileManager.instance.checkIfBuildableAt(x, y);
+                        break;
+                    case (int)Global.TileType.ROOT:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.rootPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        break;
+                    case (int)Global.TileType.WATER:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.waterPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = TileManager.instance.checkIfBuildableAt(x, y);
+                        break;
+                    case (int)Global.TileType.NUTRIENT:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.nutrientPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = TileManager.instance.checkIfBuildableAt(x, y);
+                        break;
+                    case (int)Global.TileType.ROCK:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.rockPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        break;
+                    case (int)Global.TileType.ENEMY_NEST:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.enemyPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        break;
+                }
+
+                GameObject parentObject = gameObject.transform.parent.gameObject;
+
+                Destroy(gameObject);
+                Destroy(parentObject);
+            } 
+            else if (type == Global.TileType.TOWER) 
+            {
+                Vector3 worldPos = gameObject.transform.position;
+                int x = this.transform.Find("Square").GetComponent<Tile>().x;
+                int y = this.transform.Find("Square").GetComponent<Tile>().y;
+                int oldType = TileManager.instance.board_old[x,y];
+
+                switch(oldType)
+                {
+                    case (int)Global.TileType.EMPTY:
+                        
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.groundPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = TileManager.instance.checkIfBuildableAt(x, y);
+                        break;
+                    case (int)Global.TileType.ROOT:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.rootPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        break;
+                    case (int)Global.TileType.WATER:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.waterPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = TileManager.instance.checkIfBuildableAt(x, y);
+                        break;
+                    case (int)Global.TileType.NUTRIENT:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.nutrientPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = TileManager.instance.checkIfBuildableAt(x, y);
+                        break;
+                    case (int)Global.TileType.ROCK:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.rockPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
+                        break;
+                    case (int)Global.TileType.ENEMY_NEST:
+                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.enemyPrefab, 
+                            new Vector3(0.0f, 0.0f, 0.0f),
+                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                            TileManager.instance.parent.transform
+                        ).transform;
+                        TileManager.instance.board_pieces[x,y].position = worldPos;
+                        break;
+                }
+
+                Destroy(gameObject);
+            }
         }
         if(Global.TileType.TOWER != tower.type) return;
         if (enemyExist && enemyList.Count > 0) 

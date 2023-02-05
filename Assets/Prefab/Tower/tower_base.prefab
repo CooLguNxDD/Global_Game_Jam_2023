@@ -448,11 +448,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc53c760cd9e405449c2f1aca3b9ab0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 6
   tower: {fileID: 11400000, guid: 5c8adbfa3d8120042abc2dca80df3acf, type: 2}
-  HP: 0
+  originalTile: {fileID: 0}
   towerImage: {fileID: 3157469383265133802}
   towerBG: {fileID: 2040301168047814684}
   RangeCircleCollider: {fileID: 5324429474933659323}
+  currentHP: 0
   _isShooting: 0
   BulletSpawnPoint: {fileID: 8261572697009495498}
 --- !u!1 &8261572697009495498

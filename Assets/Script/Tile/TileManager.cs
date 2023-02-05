@@ -21,6 +21,7 @@ public class TileManager : MonoBehaviour
     public float offsetGrid = 0.1f;
 
     public int[,] board = new int[row, column];
+    public int[,] board_old = new int[row, column];
     public Transform[,] board_pieces = new Transform[row, column];
 
     // for generating terrain
@@ -47,7 +48,7 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    bool checkIfBuildableAt(int x, int y)
+    public bool checkIfBuildableAt(int x, int y)
     {
         if (y+1 < column)
             if (board[x,y+1] == (int)Global.TileType.ROOT) return true;
@@ -111,6 +112,7 @@ public class TileManager : MonoBehaviour
                 if (x == Math.Floor((column+1)/2f) && y == row-1)
                 {
                     changeGrid(x,y, (int)Global.TileType.ROOT, ref board);
+                    changeGrid(x,y, (int)Global.TileType.ROOT, ref board_old);
                     continue;
                 }
 
@@ -118,18 +120,22 @@ public class TileManager : MonoBehaviour
                 if (height_value < emptyRatio)
                 {
                     changeGrid(x,y, (int)Global.TileType.EMPTY, ref board);
+                    changeGrid(x,y, (int)Global.TileType.EMPTY, ref board_old);
                 }
                 else if (height_value < emptyRatio + waterRatio)
                 {
                     changeGrid(x,y, (int)Global.TileType.WATER, ref board);
+                    changeGrid(x,y, (int)Global.TileType.WATER, ref board_old);
                 }
                 else if (height_value < emptyRatio + waterRatio + nutrientRatio)
                 {
                     changeGrid(x,y, (int)Global.TileType.NUTRIENT, ref board);
+                    changeGrid(x,y, (int)Global.TileType.NUTRIENT, ref board_old);
                 }
                 else
                 {
                     changeGrid(x,y, (int)Global.TileType.ROCK, ref board);
+                    changeGrid(x,y, (int)Global.TileType.ROCK, ref board_old);
                 }
             }
         }

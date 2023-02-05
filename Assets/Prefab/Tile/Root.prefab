@@ -355,7 +355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc53c760cd9e405449c2f1aca3b9ab0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   tower: {fileID: 11400000, guid: 82be5cb61b7c88840861d5cb9fa47310, type: 2}
+  originalTile: {fileID: 0}
   towerImage: {fileID: 0}
   towerBG: {fileID: 0}
   RangeCircleCollider: {fileID: 0}
