@@ -89,7 +89,6 @@ public class Chase : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Enter");
             GameObject newEnemy = other.gameObject;
             tileList.Add(newEnemy);
             tileExist = true;
@@ -100,14 +99,12 @@ public class Chase : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Exit");
             GameObject thisEnemy = other.gameObject;
             if (tileList.Contains(thisEnemy))
             {
                 tileList.Remove(thisEnemy);
             }
         }
-        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -129,8 +126,13 @@ public class Chase : MonoBehaviour
     {
         while (target)
         {
+
             yield return new WaitForSeconds(enemy.attackDuration);
-            target.transform.GetComponent<TowerSampleScript>().currentHP -= enemy.attackDamage;
+            if (target)
+            {
+                target.transform.GetComponent<TowerSampleScript>().currentHP -= enemy.attackDamage;
+            }
+
         }
         isAttacking = false;
     }

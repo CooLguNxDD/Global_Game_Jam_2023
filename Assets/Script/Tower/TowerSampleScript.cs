@@ -49,6 +49,8 @@ public class TowerSampleScript : MonoBehaviour
     public GameObject BulletSpawnPoint;
 
     public event EventHandler OnShoot;
+
+    public ProjectilePool projectilePool;
     
     private void Awake()
     {
@@ -57,6 +59,8 @@ public class TowerSampleScript : MonoBehaviour
 
     private void Start()
     {
+        
+        projectilePool = ProjectilePool.Instance;
         totalHP = tower.HP;
         currentHP = tower.HP;
         if (Global.TileType.TOWER == tower.type)
