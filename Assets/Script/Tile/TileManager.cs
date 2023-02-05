@@ -63,7 +63,7 @@ public class TileManager : MonoBehaviour
     // make the neightbor tile to be buildable if the type is EMPTY, WATER or NUTRIENT
     public void updateNeighborBuildableAt(int x, int y)
     {
-        if (board[x,y] != (int)Global.TileType.ROOT) return;
+        if (board[x,y] != (int)Global.TileType.ROOT && board[x,y] != (int)Global.TileType.WATER && board[x,y] != (int)Global.TileType.NUTRIENT) return;
         if (y+1 < column)
             board_pieces[x,y+1].Find("Square").GetComponent<Tile>().isBuildAble = checkifTileTypeBuildable(x,y+1);
         if (y-1 >= 0)
