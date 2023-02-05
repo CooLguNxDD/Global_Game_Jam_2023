@@ -83,6 +83,7 @@ public class CardPlayController : MonoBehaviour
                 Tile source = Global.instance.buildOn.GetComponent<Tile>();
                 (int, int) xy = (source.x, source.y);
                 Vector3 pos = Global.instance.buildOn.transform.position;
+                Global.instance.CalculateTileProfit(TileManager.instance.board_pieces[xy.Item1, xy.Item2].transform.Find("Square").GetComponent<Tile>().type, cardPosClass.card.spwanableObject.transform.Find("Square").GetComponent<Tile>().type);
                 TileManager.instance.board[xy.Item1, xy.Item2] = (int)cardPosClass.card.spwanableObject.transform.Find("Square").GetComponent<Tile>().type;
                 Destroy(TileManager.instance.board_pieces[xy.Item1, xy.Item2].gameObject);
 
