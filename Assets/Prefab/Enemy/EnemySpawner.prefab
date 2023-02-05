@@ -49,6 +49,8 @@ MonoBehaviour:
   - {fileID: 6943772590904146981, guid: 633d7f67d77f66146b5bf307425bdc0a, type: 3}
   - {fileID: 6943772590904146981, guid: 06b4bed59a75df145a13d560e57a8e0f, type: 3}
   - {fileID: 6943772590904146981, guid: 06b4bed59a75df145a13d560e57a8e0f, type: 3}
+  - {fileID: 6943772590904146981, guid: 06b4bed59a75df145a13d560e57a8e0f, type: 3}
+  - {fileID: 6943772590904146981, guid: 06b4bed59a75df145a13d560e57a8e0f, type: 3}
   enemyGroup: {fileID: 0}
   Collider2D: {fileID: 8757112115452042999}
   spawnRate: 10

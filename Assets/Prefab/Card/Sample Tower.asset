@@ -15,7 +15,7 @@ MonoBehaviour:
   CardID: 2
   type: 6
   NutritionCost: 10
-  WaterCost: 10
+  WaterCost: 5
   spwanableObject: {fileID: 5324429474933659321, guid: 0c66d7d547b2e8d4da32f32a1f4358e4, type: 3}
   scriptableObject: {fileID: 11400000, guid: 5c8adbfa3d8120042abc2dca80df3acf, type: 2}
   Name: Tree Sap

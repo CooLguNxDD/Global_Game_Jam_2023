@@ -14,11 +14,16 @@ public class Global : MonoBehaviour
     public UnityEvent<string> onNutritionChange;
     public UnityEvent<string> onWaterChange;
 
+    public int currentEnemy = 0;
+    public int MaxEnemy = 50;
+
     public int nutrition;
     public int water;
 
     public int nutritionProfit;
     public int waterProfit;
+
+    public float AntHPMultiplyer = 1f;
 
     //global variable
     public int Nutrition

@@ -15,7 +15,7 @@ MonoBehaviour:
   CardID: 3
   type: 1
   NutritionCost: 1
-  WaterCost: 1
+  WaterCost: 3
   spwanableObject: {fileID: 2025737874636688588, guid: 93e056ac5356e8d4c8a124e6cd8ad750, type: 3}
   scriptableObject: {fileID: 0}
   Name: Root

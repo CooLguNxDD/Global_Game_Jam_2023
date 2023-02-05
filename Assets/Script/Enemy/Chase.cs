@@ -17,7 +17,7 @@ public class Chase : MonoBehaviour
     public CircleCollider2D Collider2D;
     public float detectionRange;
 
-    public int currentHP;
+    public float currentHP;
 
     public GameObject parentObject;
 
@@ -29,17 +29,20 @@ public class Chase : MonoBehaviour
     public bool tileExist;
     public Vector3 scale;
 
+    public float interval = 0.0f;
+    public float MaxLifeCycle = 60f;
+
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(IncreaseRange());
-        Collider2D.radius = detectionRange;
         EnableThisEnemy();
     }
 
     private void EnableThisEnemy()
     {
-        currentHP = enemy.HP;
+        Collider2D.radius = enemy.detectionRange;
+        currentHP = enemy.HP * Global.instance.AntHPMultiplyer;
         tileList = new List<GameObject>();
         agent = GetComponent<NavMeshAgent>();
         
@@ -59,8 +62,16 @@ public class Chase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        interval += Time.deltaTime;
+        if (interval > MaxLifeCycle)
+        {
+            Global.instance.currentEnemy -= 1;
+            Destroy(gameObject);
+            
+        }
         if (currentHP < 0)
         {
+            Global.instance.currentEnemy -= 1;
             Destroy(gameObject);
         }
 

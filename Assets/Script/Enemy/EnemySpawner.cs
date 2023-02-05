@@ -25,8 +25,13 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(spawnRate);
-            spawnRate = Random.Range(5f, 15f);
-            Spawn();
+            spawnRate = Random.Range(5f, 12f);
+            // Debug.Log(Global.instance.currentEnemy);
+            if (Global.instance.MaxEnemy > Global.instance.currentEnemy)
+            {
+                Spawn();
+                
+            }
         }
     }
 
@@ -42,6 +47,8 @@ public class EnemySpawner : MonoBehaviour
         
         obj = Instantiate(SpawnList[random], pos, Quaternion.identity);
         obj.transform.SetParent(enemyGroup.transform);
+        Global.instance.currentEnemy += 1;
+        Global.instance.AntHPMultiplyer += 0.002f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

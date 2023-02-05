@@ -20,4 +20,4 @@ MonoBehaviour:
   HP: 300
   attackDamage: 20
   attackDuration: 1
-  detectionRange: 15
+  detectionRange: 10
