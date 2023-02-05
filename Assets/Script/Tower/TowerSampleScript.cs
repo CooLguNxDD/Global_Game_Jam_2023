@@ -17,7 +17,6 @@ public class TowerSampleScript : MonoBehaviour
     public CircleCollider2D RangeCircleCollider;
 
     public UnityEvent<float> onHPChange;
-    public UnityEvent onDestroy;
     public int totalHP;
     public int _currentHP;
 
@@ -152,7 +151,6 @@ public class TowerSampleScript : MonoBehaviour
     {
         if (currentHP < 0)
         {
-            onDestroy?.Invoke();
             if (type == Global.TileType.ROOT)
             {
                 Vector3 worldPos = gameObject.transform.parent.transform.position;
