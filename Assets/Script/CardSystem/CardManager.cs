@@ -21,6 +21,8 @@ public class CardManager : MonoBehaviour
     public int maxCardOnHand = 5;
     public GameObject cardDisplayPrefab;
 
+    public GameObject[] cardPresetPosition;
+
     // index to check each unique card draw to player' hands
     //start from 0 to infinite
     private int _cardIndexOnHand; 
@@ -75,32 +77,31 @@ public class CardManager : MonoBehaviour
         cardPosClass.CardIndexOnHand = _cardIndexOnHand;
         
         //storage info into CardPlayController
-        newCardPos.GetComponent<CardPlayController>().CardPosClass = cardPosClass;
+        newCardPos.GetComponent<CardPlayController>().cardPosClass = cardPosClass;
         
         // add card info to hand
         CardOnHand.Add(cardPosClass);
         
         //set start animation
-        //newCardPos.SetActive(false);
+        Debug.Log(_cardCount);
+        Debug.Log(cardPresetPosition[_cardCount].GetComponent<RectTransform>().position);
+        
+        
+        newCardPos.GetComponent<CardDisplaySetting>().SetAlpha(0);
+        StartCoroutine(cardDrawAnimation(cardPresetPosition[_cardCount].GetComponent<RectTransform>().position, newCardPos));
         _cardIndexOnHand += 1;
     }
 
-    //IEnumerator cardDrawAnimation(GameObject card)
-    //{
-    //    card.SetActive(false);
+    IEnumerator cardDrawAnimation(Vector3 toPos, GameObject card)
+    {
+        yield return new WaitForSeconds(0.05f);
+        card.GetComponent<CardDisplaySetting>().SetAlpha(1);
+        RectTransform CardTransform = card.transform.GetComponent<RectTransform>();
+        CardTransform.position = new Vector3(2000, 0, 0);
+        CardTransform.DOMove(toPos, 0.5f);
+        yield return null;
 
-    //    yield return new WaitForSeconds(0.1f);
-
-    //    card.SetActive(true);
-        
-    //    RectTransform CardTransform = card.transform.GetComponent<RectTransform>();
-
-    //    Vector3 finalPosition = CardTransform.position;
-    //    Debug.Log(finalPosition);
-    //    Vector3 PositionFrom = new Vector3(1800, -300, 0);
-
-    //    CardTransform.DOMove(CardTransform.position, 1.0f).From(PositionFrom);
-    //}
+    }
 
     public void PlayCard(int index) {
 

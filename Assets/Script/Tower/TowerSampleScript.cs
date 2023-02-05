@@ -107,7 +107,7 @@ public class TowerSampleScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemyExist && enemyList[0])
+        if (enemyExist && enemyList.Count > 0)
         {
             LookAt2D(transform, enemyList[0].transform ,tower.rotationOffset, tower.rotationSpeed);
         }
