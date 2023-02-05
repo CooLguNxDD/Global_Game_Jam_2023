@@ -43,26 +43,30 @@ public class Navigate : MonoBehaviour
 
     public static void DrawGizmos(NavMeshAgent agent, bool showPath, bool showAhead)
     {
+        Debug.Log(agent);
         if (Application.isPlaying)
         {
-            if (showPath && agent.hasPath)
+            if (showPath)
             {
-                var corners = agent.path.corners;
-                if (corners.Length < 2) { return; }
-                int i = 0;
-                for (; i < corners.Length - 1; i++)
+                if (agent.hasPath)
                 {
-                    Debug.DrawLine(corners[i], corners[i + 1], Color.blue);
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawSphere(agent.path.corners[i + 1], 0.03f);
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawLine(agent.path.corners[i], agent.path.corners[i + 1]);
+                    var corners = agent.path.corners;
+                    if (corners.Length < 2) { return; }
+                    int i = 0;
+                    for (; i < corners.Length - 1; i++)
+                    {
+                        Debug.DrawLine(corners[i], corners[i + 1], Color.blue);
+                        Gizmos.color = Color.blue;
+                        Gizmos.DrawSphere(agent.path.corners[i + 1], 0.03f);
+                        Gizmos.color = Color.blue;
+                        Gizmos.DrawLine(agent.path.corners[i], agent.path.corners[i + 1]);
+                    }
+                    Debug.DrawLine(corners[0], corners[1], Color.blue);
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawSphere(agent.path.corners[1], 0.03f);
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(agent.path.corners[0], agent.path.corners[1]);
                 }
-                Debug.DrawLine(corners[0], corners[1], Color.blue);
-                Gizmos.color = Color.red;
-                Gizmos.DrawSphere(agent.path.corners[1], 0.03f);
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(agent.path.corners[0], agent.path.corners[1]);
             }
 
             if (showAhead)
