@@ -157,8 +157,8 @@ public class Global : MonoBehaviour
     {
         while(true)
         {
-            SetNutrition(Nutrition+NutritionProfit);
-            SetWater(Water+WaterProfit);
+            SetNutrition(nutrition+nutritionProfit);
+            SetWater(water+waterProfit);
             yield return new WaitForSeconds(3);
         }
         
