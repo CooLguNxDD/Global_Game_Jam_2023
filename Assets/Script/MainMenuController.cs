@@ -56,10 +56,10 @@ public class MainMenuController : MonoBehaviour
     }
 
     void Start() {
-        in_game = PlayerPrefs.GetInt("in_game");
+        // in_game = PlayerPrefs.GetInt("in_game");
 
-        PanelManager.instance.setPanelSize(0.6f, 0.6f);
-        PanelManager.instance.setPanelPosition(new Vector3(0,0,1));
+        // PanelManager.instance.setPanelSize(0.6f, 0.6f);
+        // PanelManager.instance.setPanelPosition(new Vector3(0,0,1));
     }
 
 }
