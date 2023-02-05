@@ -7,10 +7,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CameraFollow cameraFollow;
 
     public bool enableEdgeScrolling = false;
-    private float CAMERA_MIN_X = -50f;
-    private float CAMERA_MIN_Y = -50f;
-    private float CAMERA_MAX_X = 50f;
-    private float CAMERA_MAX_Y = 50f;
+    public float CAMERA_MIN_X = -50f;
+    public float CAMERA_MIN_Y = -50f;
+    public float CAMERA_MAX_X = 50f;
+    public float CAMERA_MAX_Y = 50f;
 
     private float CAMERA_MIN_ZOOM = 5f;
     private float CAMERA_MAX_ZOOM = 20f;
@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
 
     public void centerTheScreen() {
         cameraFollowPosition.x = 0;
-        cameraFollowPosition.y = 0;
+        cameraFollowPosition.y = 0; 
     }
 
     // Start is called before the first frame update
