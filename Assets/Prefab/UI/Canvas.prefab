@@ -162,7 +162,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4505209394838343133}
   - component: {fileID: 4505209394838343135}
-  - component: {fileID: 4505209394838343134}
   m_Layer: 5
   m_Name: Card_Pos
   m_TagString: Untagged
@@ -221,24 +220,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &4505209394838343134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4505209394838343132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9001443e799d2846b9f4bd1354d3d66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullDeck:
-  - {fileID: 11400000, guid: 7d36be758b5de6c4ca0eb54619072fe4, type: 2}
-  - {fileID: 11400000, guid: 5e250c631827c7d4d81c6100d304468a, type: 2}
-  maxCardOnHand: 5
-  cardDisplayPrefab: {fileID: 7217282346531904259, guid: e0bd9333f847d39429b40e19a4a7d58e, type: 3}
-  cardPresetPosition: []
 --- !u!1 &4505209395348683515
 GameObject:
   m_ObjectHideFlags: 0
