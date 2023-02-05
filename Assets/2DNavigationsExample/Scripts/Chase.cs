@@ -19,15 +19,15 @@ public class Chase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            agent.speed += 0.1f;
-        }
-        if ((transform.position - target.transform.position).magnitude < 1 && !stop)
-        {
-            stop = true;
-        }
-        agent.SetDestination(target.transform.position);
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     agent.speed += 0.1f;
+        // }
+        // if ((transform.position - target.transform.position).magnitude < 1 && !stop)
+        // {
+        //     stop = true;
+        // }
+        // agent.SetDestination(target.transform.position);
     }
 
     private void OnDrawGizmos()

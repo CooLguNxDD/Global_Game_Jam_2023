@@ -20,4 +20,4 @@ MonoBehaviour:
   scriptableObject: {fileID: 11400000, guid: 5c8adbfa3d8120042abc2dca80df3acf, type: 2}
   Name: test tower
   Description: this is a test!!!!!
-  CardImage: {fileID: 67495639, guid: 04a7c9ebdd3607246b98a36a99ad9e3e, type: 3}
+  CardImage: {fileID: -781811279, guid: 04a7c9ebdd3607246b98a36a99ad9e3e, type: 3}

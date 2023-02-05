@@ -8,8 +8,8 @@ public class projectileController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public float speed = 20f;
-    public float stayTime = 2f;
+    public float speed;
+    public float stayTime;
 
     public Vector3 target;
     
@@ -27,7 +27,7 @@ public class projectileController : MonoBehaviour
     {
         shootDir = (target - transform.position).normalized;
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, stayTime);
     }
 
     void Update()

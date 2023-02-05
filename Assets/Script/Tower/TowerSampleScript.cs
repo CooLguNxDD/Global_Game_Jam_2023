@@ -19,9 +19,11 @@ public class TowerSampleScript : MonoBehaviour
     private List<GameObject> enemyList;
 
     //shooting part
-    private bool _isShooting;
-    public event EventHandler OnShoot;
+    public bool _isShooting;
+    
     public GameObject BulletSpawnPoint;
+
+    public event EventHandler OnShoot;
     
     private void Awake()
     {
@@ -83,9 +85,11 @@ public class TowerSampleScript : MonoBehaviour
     {
         if (other.transform.CompareTag("Enemy") && enemyExist)
         {
+
             if (!_isShooting)
             {
                 StartCoroutine(Shoot());
+                
             }
         }
         else
@@ -97,12 +101,9 @@ public class TowerSampleScript : MonoBehaviour
     IEnumerator Shoot()
     {
         _isShooting = true;
+        OnShoot(this, EventArgs.Empty);
         yield return new WaitForSeconds(tower.reloadTime);
-        
-        OnShoot?.Invoke(this, EventArgs.Empty);
         _isShooting = false;
-        
-        yield return null;
     }
 
     private void FixedUpdate()
