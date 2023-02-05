@@ -185,17 +185,6 @@ public class TowerSampleScript : MonoBehaviour
                         ).transform;
                         TileManager.instance.board_pieces[x,y].position = worldPos;
                         TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
-                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = TileManager.instance.checkIfBuildableAt(x, y);
-                        break;
-                    case (int)Global.TileType.TOWER:
-                        TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.rootPrefab, 
-                            new Vector3(0.0f, 0.0f, 0.0f),
-                            new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
-                            TileManager.instance.parent.transform
-                        ).transform;
-                        TileManager.instance.board_pieces[x,y].position = worldPos;
-                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().setXY(x, y);
-                        TileManager.instance.board_pieces[x,y].Find("Square").GetComponent<Tile>().isBuildAble = TileManager.instance.checkIfBuildableAt(x, y);
                         break;
                     case (int)Global.TileType.WATER:
                         TileManager.instance.board_pieces[x,y] = Instantiate(TileManager.instance.waterPrefab, 
