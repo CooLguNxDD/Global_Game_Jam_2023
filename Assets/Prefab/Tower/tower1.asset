@@ -16,7 +16,7 @@ MonoBehaviour:
   type: 6
   rotationSpeed: 20
   rotationOffset: 90
-  damage: 0
+  damage: 10
   reloadTime: 0.2
   range: 10
   HP: 80
