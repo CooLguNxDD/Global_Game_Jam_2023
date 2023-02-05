@@ -84,10 +84,11 @@ public class CardPlayController : MonoBehaviour
                 Tile source = Global.buildOn.GetComponent<Tile>();
                 (int, int) xy = (source.x, source.y);
                 Vector3 pos = Global.buildOn.transform.position;
-                
+                TileManager.instance.board[xy.Item1, xy.Item2] = (int)CardPosClass.card.spwanableObject.transform.Find("Square").GetComponent<Tile>().type;
                 Destroy(TileManager.instance.board_pieces[xy.Item1, xy.Item2].gameObject);
-                
-                TileManager.instance.board_pieces[xy.Item1, xy.Item2] = Instantiate(cardPosClass.card.spwanableObject, 
+
+                TileManager.instance.board_pieces[xy.Item1, xy.Item2] = Instantiate(CardPosClass.card.spwanableObject, 
+
                     pos, Quaternion.identity,
                     TileManager.instance.parent.transform
                     
@@ -97,11 +98,12 @@ public class CardPlayController : MonoBehaviour
                 pos = thisObject.position;
                 thisObject.position = new Vector3(pos.x, pos.y, 100f);
                 
-                TileManager.instance.board[xy.Item1, xy.Item2] = (int)source.type;
+                
                 thisObject.Find("Square").GetComponent<Tile>().setXY(xy.Item1, xy.Item2);
                 thisObject.Find("Square").GetComponent<Tile>().isBuildAble = false;
                 TileManager.instance.updateNeighborBuildableAt(xy.Item1, xy.Item2);
-                source.type = cardPosClass.card.type;
+
+                // source.type = CardPosClass.card.type;
                 
                 SetTowerScriptable(TileManager.instance.board_pieces[xy.Item1, xy.Item2]);
                 return;
