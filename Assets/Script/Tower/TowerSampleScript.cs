@@ -49,6 +49,8 @@ public class TowerSampleScript : MonoBehaviour
     public GameObject BulletSpawnPoint;
 
     public event EventHandler OnShoot;
+
+    public ProjectilePool projectilePool;
     
     private void Awake()
     {
@@ -57,6 +59,8 @@ public class TowerSampleScript : MonoBehaviour
 
     private void Start()
     {
+        
+        projectilePool = ProjectilePool.Instance;
         totalHP = tower.HP;
         currentHP = tower.HP;
         if (Global.TileType.TOWER == tower.type)
@@ -81,13 +85,9 @@ public class TowerSampleScript : MonoBehaviour
 
     public void ShootProjectile(object sender, EventArgs e)
     {
-        GameObject bullet = Instantiate(tower.projectile, BulletSpawnPoint.transform.position, Quaternion.identity);
-
-        projectileController controller = bullet.GetComponent<projectileController>();
-        controller.target = enemyList[0].transform.position;
-        controller.speed = tower.projectileSpeed;
-        controller.stayTime = tower.projectileStayTime;
-        controller.damage = tower.damage;
+        GameObject bullet = ProjectilePool.Instance.SpawnFromPool("bullet", transform.position, Quaternion.identity);
+        ProjectileController controller = bullet.GetComponent<ProjectileController>();
+        controller.ProjectileSetup(enemyList[0],tower.projectileSpeed, tower.projectileStayTime, tower.damage );
     }
 
     private void LookAt2D(Transform current, Transform others ,float RotationOffset, float RotationSpeed)
