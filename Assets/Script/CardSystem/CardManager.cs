@@ -27,6 +27,12 @@ public class CardManager : MonoBehaviour
     //start from 0 to infinite
     private int _cardIndexOnHand; 
     private int _cardCount;
+    
+    
+    //timer
+    
+    float interval = 0;
+    float maxInterval = 2.5f;
 
     public void Awake()
     {
@@ -57,6 +63,7 @@ public class CardManager : MonoBehaviour
         {
             // dequeue when draw a card
             Card drawCard = DrawPile.Dequeue();
+            
             DisplayCardOnHand(drawCard);
             _cardCount++;
         }
@@ -81,16 +88,12 @@ public class CardManager : MonoBehaviour
         
         // add card info to hand
         CardOnHand.Add(cardPosClass);
-        
-        //set start animation
-        Debug.Log(_cardCount);
-        Debug.Log(cardPresetPosition[_cardCount].GetComponent<RectTransform>().position);
-        
-        
+
         newCardPos.GetComponent<CardDisplaySetting>().SetAlpha(0);
         StartCoroutine(cardDrawAnimation(cardPresetPosition[_cardCount].GetComponent<RectTransform>().position, newCardPos));
         _cardIndexOnHand += 1;
     }
+    
 
     IEnumerator cardDrawAnimation(Vector3 toPos, GameObject card)
     {
@@ -131,7 +134,13 @@ public class CardManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        interval += Time.deltaTime;
+        if (maxInterval < interval)
+        {
+            interval = 0.0f;
+            DrawCard();
+        }
     }
 }
