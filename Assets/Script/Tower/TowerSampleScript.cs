@@ -86,7 +86,7 @@ public class TowerSampleScript : MonoBehaviour
     public void ShootProjectile(object sender, EventArgs e)
     {
         GameObject bullet = projectilePool.SpawnFromPool("bullet", transform.position, Quaternion.identity);
-        ProjectileController controller = bullet.GetComponent<ProjectileController>();
+        projectileController controller = bullet.GetComponent<projectileController>();
         Debug.Log(controller);
         controller.ProjectileSetup(enemyList[0], tower.projectileSpeed, tower.projectileStayTime, tower.damage);
     }
