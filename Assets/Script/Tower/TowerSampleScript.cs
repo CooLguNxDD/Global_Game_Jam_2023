@@ -32,7 +32,7 @@ public class TowerSampleScript : MonoBehaviour
     private void Start()
     {
         OnShoot += ShootProjectile;
-        RangeCircleCollider.radius = tower.range;
+        //RangeCircleCollider.radius = tower.range;
         Display();
     }
 

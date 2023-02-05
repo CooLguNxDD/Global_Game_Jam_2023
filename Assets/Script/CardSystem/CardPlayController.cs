@@ -62,6 +62,14 @@ public class CardPlayController : MonoBehaviour
         _rectTransform.DOMove(_previousPosition, 0.25f);
     }
 
+    public void SetTowerScriptable(Transform newObject)
+    {
+        if (CardPosClass.card.scriptableObject && CardPosClass.card.type == Global.TileType.TOWER)
+        {
+            newObject.GetComponent<TowerSampleScript>().tower = CardPosClass.card.scriptableObject;
+        }
+    }
+
     public void MouseUp()
     {
         //start dragging
@@ -76,18 +84,26 @@ public class CardPlayController : MonoBehaviour
                 Tile source = Global.buildOn.GetComponent<Tile>();
                 (int, int) xy = (source.x, source.y);
                 Vector3 pos = Global.buildOn.transform.position;
+                
                 Destroy(TileManager.instance.board_pieces[xy.Item1, xy.Item2].gameObject);
+                
                 TileManager.instance.board_pieces[xy.Item1, xy.Item2] = Instantiate(CardPosClass.card.spwanableObject, 
-                    pos,
-                    new Quaternion(0.0f, 0.0f, 0.0f, 1.0f),
+                    pos, Quaternion.identity,
                     TileManager.instance.parent.transform
                     
                 ).transform;
+                
+                Transform thisObject = TileManager.instance.board_pieces[xy.Item1, xy.Item2];
+                pos = thisObject.position;
+                thisObject.position = new Vector3(pos.x, pos.y, 100f);
+                
                 TileManager.instance.board[xy.Item1, xy.Item2] = (int)source.type;
-                TileManager.instance.board_pieces[xy.Item1, xy.Item2].Find("Square").GetComponent<Tile>().setXY(xy.Item1, xy.Item2);
-                TileManager.instance.board_pieces[xy.Item1, xy.Item2].Find("Square").GetComponent<Tile>().isBuildAble = false;
+                thisObject.Find("Square").GetComponent<Tile>().setXY(xy.Item1, xy.Item2);
+                thisObject.Find("Square").GetComponent<Tile>().isBuildAble = false;
                 TileManager.instance.updateNeighborBuildableAt(xy.Item1, xy.Item2);
                 source.type = CardPosClass.card.type;
+                
+                SetTowerScriptable(TileManager.instance.board_pieces[xy.Item1, xy.Item2]);
                 return;
             }
             Debug.Log("not enough cost");
