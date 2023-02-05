@@ -19,9 +19,7 @@ MonoBehaviour:
   spwanableObject: {fileID: 2025737874636688588, guid: 93e056ac5356e8d4c8a124e6cd8ad750, type: 3}
   scriptableObject: {fileID: 0}
   Name: Root
-  Description: 'Place this card besides any root to connect with, in order to expand
-    your reach into the dark. Roots can absorb water and nutrients located on the
-    map.
+  Description: 'Connect to any root
 
-'
+    Absorb water and resources'
   CardImage: {fileID: 21300000, guid: cb2253e151376ce48a7cb2ab482adba0, type: 3}
