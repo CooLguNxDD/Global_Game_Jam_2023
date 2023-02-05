@@ -52,17 +52,7 @@ public class ProjectileController : MonoBehaviour
     }
     void Update()
     {
-        if (isTarget)
-        {
-            SeekEnemy();
-        }
-
-        interval += Time.deltaTime;
-        if (stayTime < interval)
-        {
-            interval = 0.0f;
-            gameObject.SetActive(false);
-        }
+        SeekEnemy();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -70,8 +60,8 @@ public class ProjectileController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log(other.transform.GetComponent<Chase>().currentHP);
-            other.transform.GetComponent<Chase>().currentHP -= (int)damage;
-            gameObject.SetActive(false);
+            other.transform.GetComponent<Chase>().currentHP -= damage;
+            Destroy(gameObject);
         }
     }
 }
