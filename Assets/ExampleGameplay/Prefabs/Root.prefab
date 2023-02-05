@@ -204,7 +204,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.46274513, g: 0.19607845, b: 0.027450982, a: 1}
+  m_Color: {r: 0.46274513, g: 0.19607845, b: 0.027450982, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -288,6 +288,18 @@ MonoBehaviour:
   x: 0
   y: 0
   isBuildAble: 0
+  target_art: {fileID: 0}
+  branchAll: {fileID: 0}
+  branchH: {fileID: 0}
+  branchV: {fileID: 0}
+  branchLNE: {fileID: 0}
+  branchLNW: {fileID: 0}
+  branchLSE: {fileID: 0}
+  branchLSW: {fileID: 0}
+  branchTDown: {fileID: 0}
+  branchTUp: {fileID: 0}
+  branchTLeft: {fileID: 0}
+  branchTRight: {fileID: 0}
 --- !u!114 &6156496426325662416
 MonoBehaviour:
   m_ObjectHideFlags: 0
