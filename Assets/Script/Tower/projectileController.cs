@@ -10,11 +10,13 @@ public class projectileController : MonoBehaviour
 
     public float speed;
     public float stayTime;
-    public int damage;
-
-    public Vector3 target;
+    public float damage;
+    public GameObject target;
+    public float interval;
     
     private Vector3 shootDir;
+
+    public bool isTarget;
     
     //code monkey!
     public static float GetAngleFromVectorFloat(Vector3 dir) {
@@ -24,22 +26,43 @@ public class projectileController : MonoBehaviour
         return n;
     }
 
+    public void ProjectileSetup(GameObject target_obj, float setSpeed, float setStayTime, float setDamage)
+    {
+        target = target_obj;
+        speed = setSpeed;
+        stayTime = setStayTime;
+        damage = setDamage;
+        interval = 0.0f;
+        isTarget = true;
+    }
+
     private void Start()
     {
-        Destroy(gameObject, stayTime);
+        Debug.Log(target.name);
     }
 
     public void SeekEnemy()
     {
-        shootDir = (target - transform.position).normalized;
-        transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
-        transform.position += shootDir * (speed * Time.deltaTime);
-        
+        if (target)
+        {
+            shootDir = (target.transform.position - transform.position).normalized;
+            transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
+            transform.position += shootDir * (speed * Time.deltaTime);
+        }
     }
-
     void Update()
     {
-        SeekEnemy();
+        if (isTarget)
+        {
+            SeekEnemy();
+        }
+
+        interval += Time.deltaTime;
+        if (stayTime < interval)
+        {
+            interval = 0.0f;
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -47,8 +70,8 @@ public class projectileController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log(other.transform.GetComponent<Chase>().currentHP);
-            other.transform.GetComponent<Chase>().currentHP -= damage;
-            Destroy(gameObject);
+            other.transform.GetComponent<Chase>().currentHP -= (int)damage;
+            gameObject.SetActive(false);
         }
     }
 }
