@@ -39,6 +39,10 @@ public class TowerSampleScript : MonoBehaviour
         {
             _isShooting = false;
             
+            var position = transform.position;
+            position = new Vector3(position.x, position.y, position.z + 2.5f);
+            transform.position = position;
+            
             OnShoot += ShootProjectile;
             //RangeCircleCollider.radius = tower.range;
             Display();
