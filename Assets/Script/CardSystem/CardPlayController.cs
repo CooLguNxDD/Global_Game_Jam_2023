@@ -26,7 +26,7 @@ public class CardPlayController : MonoBehaviour
     public void MouseDown() {
         //start dragging
         
-        Global.draggingCard = cardPosClass.card;
+        Global.instance.draggingCard = cardPosClass.card;
 
         if (_previousPosition == Vector3.zero)
         {
@@ -43,13 +43,13 @@ public class CardPlayController : MonoBehaviour
 
     public bool ValidCost()
     {
-        if (Global.Nutrition > cardPosClass.card.NutritionCost &&
-            Global.Water > cardPosClass.card.WaterCost)
+        if (Global.instance.Nutrition > cardPosClass.card.NutritionCost &&
+            Global.instance.Water > cardPosClass.card.WaterCost)
         {
-            Global.Nutrition -= cardPosClass.card.NutritionCost; 
-            Global.Water -= cardPosClass.card.WaterCost;
-            Debug.Log(Global.Nutrition);
-            Debug.Log(Global.Water);
+            Global.instance.SetNutrition(Global.instance.Nutrition - cardPosClass.card.NutritionCost); 
+            Global.instance.SetWater(Global.instance.Water - cardPosClass.card.WaterCost);
+            // Debug.Log(Global.Nutrition);
+            // Debug.Log(Global.Water);
             return true;
         }
         
@@ -74,16 +74,16 @@ public class CardPlayController : MonoBehaviour
     {
         //start dragging
         
-        if (Global.isValidLocation && Global.draggingCard)
+        if (Global.instance.isValidLocation && Global.instance.draggingCard)
         {
             if (ValidCost())
             {
                 Debug.Log("played a card");
                 cardSystem.PlayCard(cardPosClass.CardIndexOnHand);
 
-                Tile source = Global.buildOn.GetComponent<Tile>();
+                Tile source = Global.instance.buildOn.GetComponent<Tile>();
                 (int, int) xy = (source.x, source.y);
-                Vector3 pos = Global.buildOn.transform.position;
+                Vector3 pos = Global.instance.buildOn.transform.position;
                 TileManager.instance.board[xy.Item1, xy.Item2] = (int)cardPosClass.card.spwanableObject.transform.Find("Square").GetComponent<Tile>().type;
                 Destroy(TileManager.instance.board_pieces[xy.Item1, xy.Item2].gameObject);
 
@@ -121,7 +121,7 @@ public class CardPlayController : MonoBehaviour
         
         CardBackToEnd();
         //set dragging to false
-        Global.draggingCard = null;
+        Global.instance.draggingCard = null;
         //Debug.Log("up");
     }
 }

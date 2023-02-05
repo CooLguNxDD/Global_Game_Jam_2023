@@ -15,20 +15,20 @@ public class hoverable : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (Global.draggingCard && transform.GetComponent<Tile>().isBuildAble)
+        if (Global.instance.draggingCard && transform.GetComponent<Tile>().isBuildAble)
         {
             // Debug.Log("enter");
-            Global.isValidLocation = true;
-            Global.buildOn = gameObject;
+            Global.instance.isValidLocation = true;
+            Global.instance.buildOn = gameObject;
             transform.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
     private void OnMouseExit()
     {
-        if (Global.draggingCard)
+        if (Global.instance.draggingCard)
         {
             // Debug.Log("exit");
-            Global.isValidLocation = false;
+            Global.instance.isValidLocation = false;
             transform.GetComponent<SpriteRenderer>().color = _originalColor;
         }
     }
