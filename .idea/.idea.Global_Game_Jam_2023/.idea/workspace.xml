@@ -14,6 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Tower/Tower.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.visualstudio@2.0.16/Editor/Messaging/Message.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -82,7 +83,8 @@
       <workItem from="1675459560134" duration="6810000" />
       <workItem from="1675536287087" duration="9619000" />
       <workItem from="1675553099635" duration="2000" />
-      <workItem from="1675553124726" duration="834000" />
+      <workItem from="1675553124726" duration="3713000" />
+      <workItem from="1675556873802" duration="802000" />
     </task>
     <servers />
   </component>
