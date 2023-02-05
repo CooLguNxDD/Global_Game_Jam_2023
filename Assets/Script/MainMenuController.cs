@@ -21,7 +21,8 @@ public class MainMenuController : MonoBehaviour
     }
 
     public void startGame() {
-        PanelManager.instance.loadCustomDifficulty();
+        //PanelManager.instance.loadCustomDifficulty();
+        SceneManager.LoadScene("MayBeFinal_Andrew");
         //PanelManager.instance.loadPanel("\nPlease choose your difficulty:", delegate {startNewGame((int)DIFFICULTY.EASY);}, delegate {startNewGame((int)DIFFICULTY.NORMAL);}, "Easy", "Normal", addButtons);
     }
 

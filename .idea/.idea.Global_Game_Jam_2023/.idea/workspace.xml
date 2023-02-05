@@ -99,4 +99,23 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Script/Enemy/Chase.cs</url>
+          <line>110</line>
+          <properties documentPath="Z:\code_project\all_unity\Project\Global_Game_Jam_2023\Assets\Script\Enemy\Chase.cs" initialLine="110" containingFunctionPresentation="method 'OnTriggerExit2D'">
+            <startOffsets>
+              <option value="2855" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2856" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>
