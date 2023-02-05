@@ -46,7 +46,7 @@ public class Chase : MonoBehaviour
 
         if (tileExist && tileList.Count > 0)
         {
-            agent.SetDestination(tileList[0].transform.parent.transform.position);
+            agent.SetDestination(tileList[0].transform.position);
         }
         gameObject.transform.eulerAngles = Vector3.zero;
     }
@@ -101,10 +101,5 @@ public class Chase : MonoBehaviour
             tileList[0].transform.GetComponent<TowerSampleScript>().HP -= enemy.attackDamage;
         }
         isAttacking = false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Navigate.DrawGizmos(agent, showPath, showAhead);
     }
 }
