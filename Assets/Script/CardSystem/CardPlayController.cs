@@ -52,7 +52,6 @@ public class CardPlayController : MonoBehaviour
             // Debug.Log(Global.Water);
             return true;
         }
-        
         return false;
     }
 
