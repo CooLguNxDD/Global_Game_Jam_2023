@@ -37,8 +37,8 @@ public class EnemySpawner : MonoBehaviour
         int random = Random.Range(0, SpawnList.Length);
         var position = transform.position;
         
-        Vector3 pos = new Vector3(position.x + Random.Range(-2f, 2f),
-            position.y + Random.Range(-2f, 2f), position.z);
+        Vector3 pos = new Vector3(position.x + Random.Range(-5f, 5f),
+            position.y + Random.Range(-5f, 5f), position.z);
         
         obj = Instantiate(SpawnList[random], pos, Quaternion.identity);
         obj.transform.SetParent(enemyGroup.transform);

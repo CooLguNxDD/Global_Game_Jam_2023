@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour
+public class projectileController : MonoBehaviour
 {
     // Start is called before the first frame update
 
     public float speed;
     public float stayTime;
-    public float damage;
-    public GameObject target;
-    public float interval;
+    public int damage;
+
+    public Vector3 target;
     
     private Vector3 shootDir;
-
-    public bool isTarget;
     
     //code monkey!
     public static float GetAngleFromVectorFloat(Vector3 dir) {
@@ -26,48 +24,22 @@ public class ProjectileController : MonoBehaviour
         return n;
     }
 
-    public void ProjectileSetup(GameObject target_obj, float setSpeed, float setStayTime, float setDamage)
-    {
-        target = target_obj;
-        speed = setSpeed;
-        stayTime = setStayTime;
-        damage = setDamage;
-        interval = 0.0f;
-        isTarget = true;
-    }
-
     private void Start()
     {
-        Debug.Log(target.name);
+        Destroy(gameObject, stayTime);
     }
 
     public void SeekEnemy()
     {
-        if (target)
-        {
-            shootDir = (target.transform.position - transform.position).normalized;
-            transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
-            transform.position += shootDir * (speed * Time.deltaTime);
-        }
+        shootDir = (target - transform.position).normalized;
+        transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
+        transform.position += shootDir * (speed * Time.deltaTime);
+        
     }
+
     void Update()
     {
-        if (isTarget)
-        {
-            SeekEnemy();
-        }
-
-        if (!target)
-        {
-            gameObject.SetActive(false);
-        }
-
-        interval += Time.deltaTime;
-        if (stayTime < interval)
-        {
-            interval = 0.0f;
-            gameObject.SetActive(false);
-        }
+        SeekEnemy();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -75,9 +47,8 @@ public class ProjectileController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log(other.transform.GetComponent<Chase>().currentHP);
-            other.transform.GetComponent<Chase>().currentHP -= (int)damage;
-            isTarget = false;
-            gameObject.SetActive(false);
+            other.transform.GetComponent<Chase>().currentHP -= damage;
+            Destroy(gameObject);
         }
     }
 }

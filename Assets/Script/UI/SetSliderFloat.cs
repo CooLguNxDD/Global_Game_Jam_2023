@@ -17,7 +17,7 @@ public class SetSliderFloat : MonoBehaviour
 
     public void ValueUpdate(float value)
     {
-        // Debug.Log("currentHP: " + value);
+        Debug.Log("currentHP: " + value);
         slider.value = value;
     }
 
