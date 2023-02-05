@@ -12,6 +12,7 @@ public class Card : ScriptableObject
     // Card Status
     public int NutritionCost;
     public int WaterCost;
+    public GameObject spwanableObject;
     public string Name;
     [TextArea]
     public string Description;

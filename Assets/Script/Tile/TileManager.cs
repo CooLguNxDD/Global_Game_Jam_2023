@@ -6,6 +6,8 @@ using System;
 public class TileManager : MonoBehaviour
 {
 
+    public static TileManager instance = null;
+
     public static int row = 50;
     public static int column = 50;
 
@@ -37,6 +39,14 @@ public class TileManager : MonoBehaviour
         board[x,y] = tile;
     }
 
+    void Awake() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+    }
+
     bool checkIfBuildableAt(int x, int y)
     {
         if (y+1 < column)
@@ -48,6 +58,27 @@ public class TileManager : MonoBehaviour
         if (x-1 >= 0)
             if (board[x-1,y] == (int)Global.TileType.ROOT) return true;
         return false;
+    }
+
+    // make the neightbor tile to be buildable if the type is EMPTY, WATER or NUTRIENT
+    public void updateNeighborBuildableAt(int x, int y)
+    {
+        if (y+1 < column)
+            board_pieces[x,y+1].Find("Square").GetComponent<Tile>().isBuildAble = checkifTileTypeBuildable(x,y+1);
+        if (y-1 >= 0)
+            board_pieces[x,y-1].Find("Square").GetComponent<Tile>().isBuildAble = checkifTileTypeBuildable(x,y-1);
+        if (x+1 < row)
+            board_pieces[x+1,y].Find("Square").GetComponent<Tile>().isBuildAble = checkifTileTypeBuildable(x+1,y);
+        if (x-1 >= 0)
+            board_pieces[x-1,y].Find("Square").GetComponent<Tile>().isBuildAble = checkifTileTypeBuildable(x-1,y);
+    }
+
+    bool checkifTileTypeBuildable(int x, int y)
+    {
+        if (board[x,y] == (int)Global.TileType.ENEMY_NEST) return false;
+        if (board[x,y] == (int)Global.TileType.ROCK) return false;
+        if (board[x,y] == (int)Global.TileType.ROOT) return false;
+        return true;
     }
 
     public Vector3 initialPosition = new Vector3(0f,0f,0f);
