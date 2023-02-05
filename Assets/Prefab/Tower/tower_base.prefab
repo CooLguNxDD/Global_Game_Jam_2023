@@ -246,6 +246,18 @@ MonoBehaviour:
   x: 0
   y: 0
   isBuildAble: 0
+  target_art: {fileID: 0}
+  branchAll: {fileID: 0}
+  branchH: {fileID: 0}
+  branchV: {fileID: 0}
+  branchLNE: {fileID: 0}
+  branchLNW: {fileID: 0}
+  branchLSE: {fileID: 0}
+  branchLSW: {fileID: 0}
+  branchTDown: {fileID: 0}
+  branchTUp: {fileID: 0}
+  branchTLeft: {fileID: 0}
+  branchTRight: {fileID: 0}
 --- !u!114 &5928357922259704309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +370,7 @@ GameObject:
   - component: {fileID: 5324429474933659324}
   m_Layer: 0
   m_Name: tower_base
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,10 +448,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc53c760cd9e405449c2f1aca3b9ab0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 0}
+  tower: {fileID: 11400000, guid: 5c8adbfa3d8120042abc2dca80df3acf, type: 2}
+  HP: 0
   towerImage: {fileID: 3157469383265133802}
   towerBG: {fileID: 2040301168047814684}
   RangeCircleCollider: {fileID: 5324429474933659323}
+  _isShooting: 0
   BulletSpawnPoint: {fileID: 8261572697009495498}
 --- !u!1 &8261572697009495498
 GameObject:

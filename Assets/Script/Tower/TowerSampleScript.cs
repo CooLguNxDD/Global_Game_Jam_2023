@@ -8,11 +8,12 @@ using UnityEngine;
 public class TowerSampleScript : MonoBehaviour
 {
     public Tower tower;
-
+    public GameObject originalTile;
     public GameObject towerImage;
     public GameObject towerBG;
 
     public CircleCollider2D RangeCircleCollider;
+    public int currentHP;
 
     //enemy checking
     private bool enemyExist;
@@ -27,15 +28,20 @@ public class TowerSampleScript : MonoBehaviour
     
     private void Awake()
     {
-        _isShooting = false;
         enemyList = new List<GameObject>();
     }
 
     private void Start()
     {
-        OnShoot += ShootProjectile;
-        //RangeCircleCollider.radius = tower.range;
-        Display();
+        currentHP = tower.HP;
+        if (Global.TileType.TOWER == tower.type)
+        {
+            _isShooting = false;
+            
+            OnShoot += ShootProjectile;
+            //RangeCircleCollider.radius = tower.range;
+            Display();
+        }
     }
 
     public void Display()
@@ -52,6 +58,7 @@ public class TowerSampleScript : MonoBehaviour
         controller.target = enemyList[0].transform.position;
         controller.speed = tower.projectileSpeed;
         controller.stayTime = tower.projectileStayTime;
+        controller.damage = tower.damage;
     }
 
     private void LookAt2D(Transform current, Transform others ,float RotationOffset, float RotationSpeed)
@@ -64,6 +71,8 @@ public class TowerSampleScript : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(Global.TileType.TOWER != tower.type) return;
+        
         if (other.transform.CompareTag("Enemy"))
         {
             GameObject newEnemy = other.gameObject;
@@ -74,6 +83,8 @@ public class TowerSampleScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if(Global.TileType.TOWER != tower.type) return;
+        
         GameObject thisEnemy = other.gameObject;
         if (enemyList.Contains(thisEnemy))
         {
@@ -83,13 +94,14 @@ public class TowerSampleScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if(Global.TileType.TOWER != tower.type) return;
+        
         if (other.transform.CompareTag("Enemy") && enemyExist)
         {
 
             if (!_isShooting)
             {
                 StartCoroutine(Shoot());
-                
             }
         }
         else
@@ -108,9 +120,16 @@ public class TowerSampleScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemyExist && enemyList.Count > 0)
+        if (currentHP < 0)
+        {
+            Destroy(gameObject);
+        }
+        if(Global.TileType.TOWER != tower.type) return;
+        if (enemyExist && enemyList.Count > 0) 
         {
             LookAt2D(transform, enemyList[0].transform ,tower.rotationOffset, tower.rotationSpeed);
         }
+
+
     }
 }

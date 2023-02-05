@@ -177,6 +177,18 @@ MonoBehaviour:
   x: 0
   y: 0
   isBuildAble: 1
+  target_art: {fileID: 0}
+  branchAll: {fileID: 0}
+  branchH: {fileID: 0}
+  branchV: {fileID: 0}
+  branchLNE: {fileID: 0}
+  branchLNW: {fileID: 0}
+  branchLSE: {fileID: 0}
+  branchLSW: {fileID: 0}
+  branchTDown: {fileID: 0}
+  branchTUp: {fileID: 0}
+  branchTLeft: {fileID: 0}
+  branchTRight: {fileID: 0}
 --- !u!114 &1081991149389529903
 MonoBehaviour:
   m_ObjectHideFlags: 0

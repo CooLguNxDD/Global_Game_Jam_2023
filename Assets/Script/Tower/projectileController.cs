@@ -10,6 +10,7 @@ public class projectileController : MonoBehaviour
 
     public float speed;
     public float stayTime;
+    public int damage;
 
     public Vector3 target;
     
@@ -25,13 +26,28 @@ public class projectileController : MonoBehaviour
 
     private void Start()
     {
+        Destroy(gameObject, stayTime);
+    }
+
+    public void SeekEnemy()
+    {
         shootDir = (target - transform.position).normalized;
         transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(shootDir));
-        Destroy(gameObject, stayTime);
+        transform.position += shootDir * (speed * Time.deltaTime);
+        
     }
 
     void Update()
     {
-        transform.position += shootDir * (speed * Time.deltaTime);
+        SeekEnemy();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.transform.GetComponent<Chase>().currentHP -= damage;
+            Destroy(gameObject);
+        }
     }
 }
