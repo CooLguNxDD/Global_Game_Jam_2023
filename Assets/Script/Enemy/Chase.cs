@@ -32,6 +32,13 @@ public class Chase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(IncreaseRange());
+        Collider2D.radius = detectionRange;
+        EnableThisEnemy();
+    }
+
+    private void EnableThisEnemy()
+    {
         currentHP = enemy.HP;
         tileList = new List<GameObject>();
         agent = GetComponent<NavMeshAgent>();
@@ -46,7 +53,7 @@ public class Chase : MonoBehaviour
 
         detectionRange = enemy.detectionRange;
         scale = gameObject.transform.localScale;
-        Collider2D.radius = detectionRange;
+        
     }
 
     // Update is called once per frame
@@ -54,7 +61,7 @@ public class Chase : MonoBehaviour
     {
         if (currentHP < 0)
         {
-            Destroy(parentObject);
+            Destroy(gameObject);
         }
 
         if (tileExist && tileList.Count > 0)
@@ -75,12 +82,6 @@ public class Chase : MonoBehaviour
             //gameObject.transform.eulerAngles = new Vector3(angle.x, angle.y , )
             gameObject.transform.localScale = new Vector3(-scale.x, -scale.y, scale.z);
         }
-
-        if (!isIncreasing)
-        {
-            StartCoroutine(IncreaseRange());
-        }
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -92,6 +93,7 @@ public class Chase : MonoBehaviour
             GameObject newEnemy = other.gameObject;
             tileList.Add(newEnemy);
             tileExist = true;
+            
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -105,17 +107,16 @@ public class Chase : MonoBehaviour
                 tileList.Remove(thisEnemy);
             }
         }
-
-
+        
     }
-    private void OnCollisionStay2D(Collision2D collision)
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (tileExist && collision.transform.CompareTag("Player"))
+        if (other.transform.CompareTag("Player") && !isAttacking)
         {
-            if (!isAttacking)
-            {
-                StartCoroutine(AttackPlayer());
-            }
+            isAttacking = true;
+            StartCoroutine(AttackPlayer(other.gameObject));
+            
         }
     }
 
@@ -124,23 +125,24 @@ public class Chase : MonoBehaviour
         isAttacking = false;
     }
 
-    IEnumerator AttackPlayer()
+    IEnumerator AttackPlayer(GameObject target)
     {
-        isAttacking = true;
-        yield return new WaitForSeconds(enemy.attackDuration);
-        if (isAttacking)
+        while (target)
         {
-            tileList[0].transform.GetComponent<TowerSampleScript>().currentHP -= enemy.attackDamage;
+            yield return new WaitForSeconds(enemy.attackDuration);
+            target.transform.GetComponent<TowerSampleScript>().currentHP -= enemy.attackDamage;
         }
         isAttacking = false;
     }
 
     IEnumerator IncreaseRange()
     {
-        isIncreasing = true;
-        yield return new WaitForSeconds(20f);
-        isIncreasing = false;
-        detectionRange += 1;
-        Collider2D.radius = detectionRange;
+        while (true)
+        {
+            yield return new WaitForSeconds(20f);
+            detectionRange += 1;
+            Collider2D.radius = detectionRange;
+        }
+        
     }
 }

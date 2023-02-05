@@ -46,6 +46,7 @@ public class projectileController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log(other.transform.GetComponent<Chase>().currentHP);
             other.transform.GetComponent<Chase>().currentHP -= damage;
             Destroy(gameObject);
         }

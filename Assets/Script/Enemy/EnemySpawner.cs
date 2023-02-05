@@ -11,28 +11,23 @@ public class EnemySpawner : MonoBehaviour
 
     public CircleCollider2D Collider2D;
 
-    public int spawnRate;
+    public float spawnRate;
     private bool isSpawning;
     private void Start()
     {
+        StartCoroutine(Spawner());
         enemyGroup = GameObject.Find("EnemySpawnGroup");
 
     }
 
-    private void FixedUpdate()
-    {
-        if (!isSpawning)
-        {
-            StartCoroutine(Spawner());
-        }
-    }
-
     IEnumerator Spawner()
     {
-        isSpawning = true;
-        yield return new WaitForSeconds(spawnRate);
-        Spawn();
-        isSpawning = false;
+        while (true)
+        {
+            yield return new WaitForSeconds(spawnRate);
+            spawnRate = Random.Range(5f, 15f);
+            Spawn();
+        }
     }
 
     // Start is called before the first frame update
@@ -42,8 +37,8 @@ public class EnemySpawner : MonoBehaviour
         int random = Random.Range(0, SpawnList.Length);
         var position = transform.position;
         
-        Vector3 pos = new Vector3(position.x + Random.Range(-5, 5),
-            position.y + Random.Range(-2.5f, 2.5f), position.z);
+        Vector3 pos = new Vector3(position.x + Random.Range(-5f, 5f),
+            position.y + Random.Range(-5f, 5f), position.z);
         
         obj = Instantiate(SpawnList[random], pos, Quaternion.identity);
         obj.transform.SetParent(enemyGroup.transform);
@@ -56,10 +51,5 @@ public class EnemySpawner : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
