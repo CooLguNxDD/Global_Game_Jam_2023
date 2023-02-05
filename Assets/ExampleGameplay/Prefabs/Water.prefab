@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8430493325908535179}
   - component: {fileID: 6123957885057139717}
   - component: {fileID: 6700991961471037956}
+  - component: {fileID: 2310037747419312692}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -208,3 +209,27 @@ MonoBehaviour:
   x: 0
   y: 0
   isBuildAble: 1
+  target_art: {fileID: 0}
+  branchAll: {fileID: 0}
+  branchH: {fileID: 0}
+  branchV: {fileID: 0}
+  branchLNE: {fileID: 0}
+  branchLNW: {fileID: 0}
+  branchLSE: {fileID: 0}
+  branchLSW: {fileID: 0}
+  branchTDown: {fileID: 0}
+  branchTUp: {fileID: 0}
+  branchTLeft: {fileID: 0}
+  branchTRight: {fileID: 0}
+--- !u!114 &2310037747419312692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130258135229640139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fd13be61f79664d972a72d258c05e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
