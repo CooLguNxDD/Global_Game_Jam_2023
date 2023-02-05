@@ -31,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6239220780796380922}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5.68, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -154,9 +154,13 @@ MonoBehaviour:
   target: {fileID: 0}
   showPath: 0
   showAhead: 0
+  Collider2D: {fileID: 918135248302346795}
+  detectionRange: 0
+  currentHP: 0
   parentObject: {fileID: 6943772590904146981}
   tileList: []
   tileExist: 0
+  scale: {x: 0, y: 0, z: 0}
 --- !u!61 &893847862058743183
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -251,7 +255,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6943772590904146981}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.37, z: 0}
   m_LocalScale: {x: 0.63319, y: 0.63319, z: 0.63319}
   m_ConstrainProportionsScale: 0
@@ -375,9 +379,13 @@ MonoBehaviour:
   target: {fileID: 0}
   showPath: 1
   showAhead: 1
+  Collider2D: {fileID: 0}
+  detectionRange: 0
+  currentHP: 0
   parentObject: {fileID: 0}
   tileList: []
   tileExist: 0
+  scale: {x: 0, y: 0, z: 0}
 --- !u!61 &6943772590904146990
 BoxCollider2D:
   m_ObjectHideFlags: 0
