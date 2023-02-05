@@ -7,7 +7,7 @@ public class CardPlayController : MonoBehaviour
 {
     // Start is called before the first frame update
     public CardManager cardSystem;
-    public CardPosClass CardPosClass;
+    public CardPosClass cardPosClass;
 
     public Tile tile;
     
@@ -19,14 +19,14 @@ public class CardPlayController : MonoBehaviour
     public void Start()
     {
         cardSystem = this.transform.GetComponentInParent<CardManager>();
-        _cardDisplaySetting = CardPosClass.CardPos.GetComponent<CardDisplaySetting>();
+        _cardDisplaySetting = cardPosClass.CardPos.GetComponent<CardDisplaySetting>();
         _rectTransform = transform.GetComponent<RectTransform>();
 
     }
     public void MouseDown() {
         //start dragging
         
-        Global.draggingCard = CardPosClass.card;
+        Global.draggingCard = cardPosClass.card;
 
         if (_previousPosition == Vector3.zero)
         {
@@ -43,11 +43,11 @@ public class CardPlayController : MonoBehaviour
 
     public bool ValidCost()
     {
-        if (Global.Nutrition > CardPosClass.card.NutritionCost &&
-            Global.Water > CardPosClass.card.WaterCost)
+        if (Global.Nutrition > cardPosClass.card.NutritionCost &&
+            Global.Water > cardPosClass.card.WaterCost)
         {
-            Global.Nutrition -= CardPosClass.card.NutritionCost; 
-            Global.Water -= CardPosClass.card.WaterCost;
+            Global.Nutrition -= cardPosClass.card.NutritionCost; 
+            Global.Water -= cardPosClass.card.WaterCost;
             Debug.Log(Global.Nutrition);
             Debug.Log(Global.Water);
             return true;
@@ -64,9 +64,9 @@ public class CardPlayController : MonoBehaviour
 
     public void SetTowerScriptable(Transform newObject)
     {
-        if (CardPosClass.card.scriptableObject && CardPosClass.card.type == Global.TileType.TOWER)
+        if (cardPosClass.card.scriptableObject && cardPosClass.card.type == Global.TileType.TOWER)
         {
-            newObject.GetComponent<TowerSampleScript>().tower = CardPosClass.card.scriptableObject;
+            newObject.GetComponent<TowerSampleScript>().tower = cardPosClass.card.scriptableObject;
         }
     }
 
@@ -79,14 +79,16 @@ public class CardPlayController : MonoBehaviour
             if (ValidCost())
             {
                 Debug.Log("played a card");
-                cardSystem.PlayCard(CardPosClass.CardIndexOnHand);
+                cardSystem.PlayCard(cardPosClass.CardIndexOnHand);
 
                 Tile source = Global.buildOn.GetComponent<Tile>();
                 (int, int) xy = (source.x, source.y);
                 Vector3 pos = Global.buildOn.transform.position;
-                TileManager.instance.board[xy.Item1, xy.Item2] = (int)CardPosClass.card.spwanableObject.transform.Find("Square").GetComponent<Tile>().type;
+                TileManager.instance.board[xy.Item1, xy.Item2] = (int)cardPosClass.card.spwanableObject.transform.Find("Square").GetComponent<Tile>().type;
                 Destroy(TileManager.instance.board_pieces[xy.Item1, xy.Item2].gameObject);
-                TileManager.instance.board_pieces[xy.Item1, xy.Item2] = Instantiate(CardPosClass.card.spwanableObject, 
+
+                TileManager.instance.board_pieces[xy.Item1, xy.Item2] = Instantiate(cardPosClass.card.spwanableObject, 
+
                     pos, Quaternion.identity,
                     TileManager.instance.parent.transform
                     
