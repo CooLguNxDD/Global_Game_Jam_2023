@@ -6,8 +6,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+
 public class TowerSampleScript : MonoBehaviour
 {
+    public UnityEvent onDestroy;
     public Global.TileType type;
     public Tower tower;
     public GameObject originalTile;
@@ -152,6 +155,7 @@ public class TowerSampleScript : MonoBehaviour
     {
         if (currentHP < 0)
         {
+            onDestroy?.Invoke();
             if (type == Global.TileType.ROOT)
             {
                 Vector3 worldPos = gameObject.transform.parent.transform.position;
