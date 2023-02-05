@@ -46,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("this is: "+other.name);
         if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
