@@ -15,9 +15,9 @@ MonoBehaviour:
   EnemyID: 0
   type: 0
   enemyImg: {fileID: 21300000, guid: b816c86184cdf7f4c91d0971c85d477e, type: 3}
-  moveSpeed: 3
+  moveSpeed: 5
   acceleration: 8
-  HP: 300
-  attackDamage: 20
-  attackDuration: 1
-  detectionRange: 15
+  HP: 100
+  attackDamage: 5
+  attackDuration: 0.5
+  detectionRange: 10
