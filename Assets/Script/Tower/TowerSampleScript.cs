@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TowerSampleScript : MonoBehaviour
 {
@@ -14,7 +15,29 @@ public class TowerSampleScript : MonoBehaviour
     public GameObject towerBG;
 
     public CircleCollider2D RangeCircleCollider;
-    public int currentHP;
+
+    public UnityEvent<float> onHPChange;
+    public int totalHP;
+    public int _currentHP;
+
+    public int currentHP
+    {
+        get
+        {
+            return _currentHP;
+        }
+        set
+        {
+            if (_currentHP == value) return;
+
+            _currentHP = value;
+
+            if (totalHP != 0)
+            {
+                onHPChange?.Invoke( 1.0f - (float)value/totalHP);
+            } else { Debug.Log("Total HP is zero"); }
+        }
+    }
 
     //enemy checking
     private bool enemyExist;
@@ -34,6 +57,7 @@ public class TowerSampleScript : MonoBehaviour
 
     private void Start()
     {
+        totalHP = tower.HP;
         currentHP = tower.HP;
         if (Global.TileType.TOWER == tower.type)
         {
