@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 8463335323869821278}
   - component: {fileID: 801572951673826574}
   - component: {fileID: 6156496426325662416}
+  - component: {fileID: 7005657412556163898}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -315,6 +316,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultColor: {r: 0.46274513, g: 0.19607845, b: 0.027450982, a: 1}
   selectedColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &7005657412556163898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025737874882523934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc53c760cd9e405449c2f1aca3b9ab0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower: {fileID: 11400000, guid: 82be5cb61b7c88840861d5cb9fa47310, type: 2}
+  towerImage: {fileID: 0}
+  towerBG: {fileID: 0}
+  HP: 80
+  RangeCircleCollider: {fileID: 0}
+  _isShooting: 0
+  BulletSpawnPoint: {fileID: 0}
 --- !u!1 &3739455557736826822
 GameObject:
   m_ObjectHideFlags: 0

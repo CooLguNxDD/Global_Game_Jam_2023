@@ -95,7 +95,7 @@ public class CardPlayController : MonoBehaviour
                 
                 Transform thisObject = TileManager.instance.board_pieces[xy.Item1, xy.Item2];
                 pos = thisObject.position;
-                thisObject.position = new Vector3(pos.x, pos.y, 100f);
+                thisObject.position = new Vector3(pos.x, pos.y, 0f);
                 
                 
                 thisObject.Find("Square").GetComponent<Tile>().setXY(xy.Item1, xy.Item2);
