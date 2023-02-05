@@ -13,7 +13,7 @@ public class Tower : ScriptableObject
     
     public float rotationSpeed;
     public float rotationOffset;
-    
+
     public int damage;
     
     public float reloadTime;

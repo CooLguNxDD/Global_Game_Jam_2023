@@ -21,6 +21,7 @@ public class Global
         WATER,
         NUTRIENT,
         ROCK,
-        ENEMY_NEST
+        ENEMY_NEST,
+        TOWER,
     }
 }
