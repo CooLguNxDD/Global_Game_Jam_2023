@@ -74,6 +74,20 @@ public class TileManager : MonoBehaviour
             board_pieces[x-1,y].Find("Square").GetComponent<Tile>().isBuildAble = checkifTileTypeBuildable(x-1,y);
     }
 
+    public List<Transform> GetNeighborTile(int x, int y)
+    {
+        List<Transform> result = new List<Transform>();
+         if (y+1 < column)
+            result.Add(board_pieces[x,y+1]);
+        if (y-1 >= 0)
+            result.Add(board_pieces[x,y-1]);
+        if (x+1 < row)
+            result.Add(board_pieces[x+1,y]);
+        if (x-1 >= 0)
+            result.Add(board_pieces[x-1,y]);
+        return result;
+    }
+
     bool checkifTileTypeBuildable(int x, int y)
     {
         if (board[x,y] == (int)Global.TileType.ENEMY_NEST) return false;
