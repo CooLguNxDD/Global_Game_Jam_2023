@@ -104,7 +104,7 @@ public class TileManager : MonoBehaviour
     {
         offsetX = UnityEngine.Random.Range(0f, 1f)*999;
         offsetY = UnityEngine.Random.Range(0f, 1f)*999;
-        Debug.Log("hi");
+        // Debug.Log("hi");
         for (int x=0;x<column;x++)
         {
             for (int y=0;y<row;y++)

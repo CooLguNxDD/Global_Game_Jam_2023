@@ -18,6 +18,6 @@ MonoBehaviour:
   moveSpeed: 3
   acceleration: 8
   HP: 300
-  attackDamage: 20
+  attackDamage: 40
   attackDuration: 1
   detectionRange: 10

@@ -36,15 +36,15 @@ public class ProjectilePool : MonoBehaviour
                 gameObject.SetActive(false);
                 objectPool.Enqueue(gameObject);
             }
-            Debug.Log("tag: "+pool.new_tag);
+            // Debug.Log("tag: "+pool.new_tag);
             PoolDictionary.Add(pool.new_tag, objectPool);
-            Debug.Log(PoolDictionary.ContainsKey("bullet"));
+            // Debug.Log(PoolDictionary.ContainsKey("bullet"));
         }
     }
 
     public GameObject SpawnFromPool(string target_tag, Vector3 position, Quaternion rotation)
     {
-        Debug.Log(target_tag);
+        // Debug.Log(target_tag);
 
         GameObject spawnObj = PoolDictionary["bullet"].Dequeue();
         spawnObj.SetActive(true);

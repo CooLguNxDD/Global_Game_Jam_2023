@@ -38,7 +38,7 @@ public class projectileController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(target.name);
+        // Debug.Log(target.name);
     }
 
     public void SeekEnemy()
@@ -69,7 +69,7 @@ public class projectileController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log(other.transform.GetComponent<Chase>().currentHP);
+            // Debug.Log(other.transform.GetComponent<Chase>().currentHP);
             other.transform.GetComponent<Chase>().currentHP -= (int)damage;
             gameObject.SetActive(false);
         }

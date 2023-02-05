@@ -38,7 +38,8 @@ public class TowerSampleScript : MonoBehaviour
             if (totalHP != 0)
             {
                 onHPChange?.Invoke( 1.0f - (float)value/totalHP);
-            } else { Debug.Log("Total HP is zero"); }
+            }
+            // else { Debug.Log("Total HP is zero"); }
         }
     }
 
@@ -90,7 +91,7 @@ public class TowerSampleScript : MonoBehaviour
     {
         GameObject bullet = projectilePool.SpawnFromPool("bullet", transform.position, Quaternion.identity);
         projectileController controller = bullet.GetComponent<projectileController>();
-        Debug.Log(controller);
+        // Debug.Log(controller);
         controller.ProjectileSetup(enemyList[0], tower.projectileSpeed, tower.projectileStayTime, tower.damage);
     }
 

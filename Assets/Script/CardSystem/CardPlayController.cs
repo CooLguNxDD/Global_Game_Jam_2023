@@ -77,7 +77,7 @@ public class CardPlayController : MonoBehaviour
         {
             if (ValidCost())
             {
-                Debug.Log("played a card");
+                // Debug.Log("played a card");
                 cardSystem.PlayCard(cardPosClass.CardIndexOnHand);
 
                 Tile source = Global.instance.buildOn.GetComponent<Tile>();
@@ -118,7 +118,7 @@ public class CardPlayController : MonoBehaviour
                 SetTowerScriptable(TileManager.instance.board_pieces[xy.Item1, xy.Item2]);
                 return;
             }
-            Debug.Log("not enough cost");
+            // Debug.Log("not enough cost");
         }
         _rectTransform.localScale = Vector3.one;
         _cardDisplaySetting.SetAlpha(1f);

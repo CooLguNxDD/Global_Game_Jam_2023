@@ -26,7 +26,7 @@ public class Card : ScriptableObject
 
     public void Awake()
     {
-        Debug.Log("this is correct!!!");
+        // Debug.Log("this is correct!!!");
         
         if (type == Global.TileType.TOWER)
         {
