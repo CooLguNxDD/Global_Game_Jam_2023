@@ -19,6 +19,8 @@ public class Tower : ScriptableObject
     public float reloadTime;
     public float range;
 
+    public int HP;
+
     public GameObject projectile;
     public float projectileSpeed;
     public float projectileStayTime;
