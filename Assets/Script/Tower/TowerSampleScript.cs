@@ -17,6 +17,7 @@ public class TowerSampleScript : MonoBehaviour
     public GameObject towerImage;
     public GameObject towerBG;
 
+    public BoxCollider2D collider2D;
     public CircleCollider2D RangeCircleCollider;
 
     public UnityEvent<float> onHPChange;
@@ -59,14 +60,18 @@ public class TowerSampleScript : MonoBehaviour
     private void Awake()
     {
         enemyList = new List<GameObject>();
+        collider2D = GetComponent<BoxCollider2D>();
+
     }
 
     private void Start()
     {
         
+        collider2D.enabled = true;
         projectilePool = ProjectilePool.Instance;
         totalHP = tower.HP;
         currentHP = tower.HP;
+
         if (Global.TileType.TOWER == tower.type)
         {
             _isShooting = false;

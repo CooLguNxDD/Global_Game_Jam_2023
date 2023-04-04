@@ -220,6 +220,7 @@ MonoBehaviour:
   branchTUp: {fileID: 0}
   branchTLeft: {fileID: 0}
   branchTRight: {fileID: 0}
+  collider2D: {fileID: 9083383405602774896}
 --- !u!114 &6156496426325662416
 MonoBehaviour:
   m_ObjectHideFlags: 0

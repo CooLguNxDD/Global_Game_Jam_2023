@@ -26,6 +26,8 @@ public class Tile : MonoBehaviour
     public Sprite branchTLeft;
     public Sprite branchTRight;
 
+    public BoxCollider2D collider2D;
+
 
     public void setXY(int x, int y)
     {
@@ -33,8 +35,20 @@ public class Tile : MonoBehaviour
         this.y = y;
     }
 
+    public void Update(){
+        
+        if(collider2D.enabled) return;
+        if(isBuildAble){
+            collider2D.enabled = true;
+        }
+    }
+
     void Start()
     {
+        collider2D = GetComponent<BoxCollider2D>();
+        if(Global.TileType.ROOT != type && Global.TileType.TOWER != type){
+            collider2D.enabled = false;
+        }
         
     }
 

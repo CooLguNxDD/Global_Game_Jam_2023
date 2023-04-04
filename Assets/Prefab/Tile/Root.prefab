@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 2851654806221394478}
   m_Layer: 0
   m_Name: Root
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,9 +241,9 @@ GameObject:
   - component: {fileID: 2025737874882523932}
   - component: {fileID: 9083383405602774896}
   - component: {fileID: 8463335323869821278}
+  - component: {fileID: 7005657412556163898}
   - component: {fileID: 801572951673826574}
   - component: {fileID: 6156496426325662416}
-  - component: {fileID: 7005657412556163898}
   m_Layer: 0
   m_Name: Square
   m_TagString: Player
@@ -378,6 +378,48 @@ MonoBehaviour:
   onSelectedSelectFingerUp:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7005657412556163898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025737874882523934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc53c760cd9e405449c2f1aca3b9ab0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+  type: 1
+  tower: {fileID: 11400000, guid: 82be5cb61b7c88840861d5cb9fa47310, type: 2}
+  originalTile: {fileID: 0}
+  towerImage: {fileID: 0}
+  towerBG: {fileID: 0}
+  collider2D: {fileID: 0}
+  RangeCircleCollider: {fileID: 0}
+  onHPChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1091854561962747192}
+        m_TargetAssemblyTypeName: SetSliderFloat, Assembly-CSharp
+        m_MethodName: ValueUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  totalHP: 0
+  _currentHP: 0
+  _isShooting: 0
+  BulletSpawnPoint: {fileID: 0}
+  projectilePool: {fileID: 0}
 --- !u!114 &801572951673826574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +448,7 @@ MonoBehaviour:
   branchTUp: {fileID: 21300000, guid: 0346fec6d1bb91c458bdfd36e09a78a7, type: 3}
   branchTLeft: {fileID: 21300000, guid: 27ce011dc5760c440bfe848d1896246a, type: 3}
   branchTRight: {fileID: 21300000, guid: 61b3270f3b74d6146a218e535e831170, type: 3}
+  collider2D: {fileID: 0}
 --- !u!114 &6156496426325662416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,44 +463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultColor: {r: 0.46274513, g: 0.19607845, b: 0.027450982, a: 1}
   selectedColor: {r: 0, g: 1, b: 0, a: 1}
---- !u!114 &7005657412556163898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025737874882523934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc53c760cd9e405449c2f1aca3b9ab0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  tower: {fileID: 11400000, guid: 82be5cb61b7c88840861d5cb9fa47310, type: 2}
-  originalTile: {fileID: 0}
-  towerImage: {fileID: 0}
-  towerBG: {fileID: 0}
-  RangeCircleCollider: {fileID: 0}
-  onHPChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1091854561962747192}
-        m_TargetAssemblyTypeName: SetSliderFloat, Assembly-CSharp
-        m_MethodName: ValueUpdate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  totalHP: 0
-  _currentHP: 0
-  _isShooting: 0
-  BulletSpawnPoint: {fileID: 0}
-  projectilePool: {fileID: 0}
 --- !u!1 &2903665465282176435
 GameObject:
   m_ObjectHideFlags: 0
